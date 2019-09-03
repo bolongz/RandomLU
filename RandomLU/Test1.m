@@ -19,9 +19,11 @@ for i = 1:20
     powerr = powerr + powerlu_errs;
     powetime = powetime + powerlu_times;
     [RandLU_errs, RandLU_times] = RandLU_errors( A,ss,kk,step, p, mode);
-    rluerr = 
-    [svd_errs, svd_times] = SVD_errors(A, ss, kk, step,mode);
+    rluerr = rluerr + RandLU_errs;
+    rlutime = rlutime + RandLU_times;
 end
+[svd_errs, svd_times] = SVD_errors(A, ss, kk, step,mode);
+
 %[randqb_errs, randqb_times] = randSVD_errors(A, ss, kk, step, p,mode);
 
 %profile report
@@ -30,7 +32,7 @@ semilogy(X, svd_errs, '--rx' , X, powerlu_errs, '-c<',X, RandLU_errs, '-.k*' ,'L
 legend( 'SVD errors', 'PowerLU errors', 'RandLU errors');
 
 subplot(1,2,2);
-semilogy(X, svd_times, '--rx', X, powerlu_times, '-c<',X, RandLU_times, '-.k*', 'LineWidth', 2, 'MarkerSize', 6);
+semilogy(X, svd_times, '--rx', X, powerlu_times/20, '-c<',X, RandLU_times/20, '-.k*', 'LineWidth', 2, 'MarkerSize', 6);
 legend('SVD Times',  'PowerLU times', 'RandLU times');
 %{
 subplot(1,2,1);
