@@ -7,7 +7,7 @@ function [A, d] = gen_rand_mat_slow_decay(m, n, r)
     L = randn(n, n);
     [V, ~] = qr(L);
     for i = 1:min(m, n)
-        d(i) = 1/i;
+        d(i) = 1/(i^2);
     end
     S= spdiags(d', 0, m, n);
     A = U * S * V;

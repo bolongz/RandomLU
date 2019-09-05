@@ -65,14 +65,14 @@ if q>0
     for ii = 1:q
         
         if ii ~= 1
-            [Y, ~, P1] = lu(A' * Y(TransposePermutation(P1),:),  'vector');
+            [Y, ~] = lu(A' * Y);
         else
-            [Y, ~, P1] = lu(A' * Y,  'vector');
+            [Y, ~] = lu(A' * Y);
         end
         if ii == q
-            [Y, ~] = qr(A * Y(TransposePermutation(P1),:), 0);  
+            [Y, ~] = qr(A * Y, 0);  
         else
-            [Y, ~, P1] = lu(A * Y(TransposePermutation(P1),:), 'vector');
+            [Y, ~] = lu(A * Y);
         end
     end
 end

@@ -5,25 +5,25 @@ function [ L, U, P1, P2] = PowerRandLU(A,l,k,q)
 if mod(q, 2) == 0
     Omega = randn(m,l);
     if q > 2
-        [VV, ~, P1] =  lu(A' * Omega,'vector');
+        [VV, ~] =  lu(A' * Omega);
     else
         [VV, ~] = qr(A' * Omega, 0);
     end
 else
     Omega = rand(n,l);
     if q > 2
-        [VV, ~, P1] =  lu(Omega,'vector');
+        [VV, ~] =  lu(Omega);
     else
         [VV, ~] = qr(Omega, 0);
     end
 end
 v = floor((q-1)/2);
 for ii = 1:v
-    [VV, ~, P1] = lu(A * VV(TransposePermutation(P1),: ),  'vector');
+    [VV, ~] = lu(A * VV);
     if ii == v
-        [VV, ~] = qr(A' * VV(TransposePermutation(P1),: ), 0);  
+        [VV, ~] = qr(A' * VV, 0);  
     else
-        [VV, ~, P1] = lu(A' * VV(TransposePermutation(P1),: ), 'vector');             
+        [VV, ~] = lu(A' * VV);             
     end
 end
 
