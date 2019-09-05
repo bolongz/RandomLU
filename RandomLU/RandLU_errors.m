@@ -1,14 +1,14 @@
 
 function [errs, times] = RandLU_errors(A, ss, k, b,p, mode)
- if nargin>5
-        mode = 'spec';
+ 
+    if strcmp(mode,'spec')
         [~, S, ~] = svds(A, k+1);
         eigs = diag(S);
     else
         mode = 'fro';
         err = norm(A, 'fro');
 
- end
+    end
     errs = [];
     times = [];
     

@@ -1,6 +1,6 @@
 %A = gen_rand_mat_s_decay(1000,800, 7);
 
-X = [1000:200:2000];
+X = [500:50:1000];
 dim = size(X,2);
 power_times = zeros(1,dim);
 rand_times = zeros(1,dim);
@@ -9,10 +9,8 @@ rand_times2 = zeros(1,dim);
 i = 1;
 for ii = 1:1:20
     for i = 1:1:dim
-        %A = gen_rand_mat_exp_decay(X(i),X(i),5);%
-        %A = gen_rand_mat_slow_decay(1000,800, 5);
         A = randn(X(i), X(i));
-        dimm = X(i);
+        dimm = 100;
         tic        
         [ ~, ~, ~, ~] = PowerRandLU(A,dimm, dimm,4);
         t1 = toc;
@@ -31,9 +29,16 @@ for ii = 1:1:20
     end
 end
 subplot(1,2,1);
-semilogy(X, power_times/20, '--rx' , X, rand_times/20, '-c<' ,'LineWidth', 2, 'MarkerSize', 6);
-legend( 'PowerLU, q = 4', 'RandomLU, p = 1');
+semilogy(X, power_times/20, '--rx' , X, rand_times/20, '-c<' ,'LineWidth', 1.5, 'MarkerSize', 8);
+L = legend( 'PowerLU, q = 4', 'RandomLU, p = 1');
+L.FontSize = 20;
+xlabel('n', 'FontSize',15,'FontWeight','bold');
+ylabel('Computational Time', 'FontSize',15,'FontWeight','bold');
+
 subplot(1,2,2);
-semilogy(X, power_times2/20, '--rx' , X, rand_times2/20, '-c<' ,'LineWidth', 2, 'MarkerSize', 6);
-legend( 'PowerLU, q = 6', 'RandomLU, p=2');
+semilogy(X, power_times2/20, '--rx' , X, rand_times2/20, '-c<' ,'LineWidth', 1.5, 'MarkerSize', 8);
+L1 = legend( 'PowerLU, q = 6', 'RandomLU, p=2');
+L1.FontSize = 20;
+xlabel('n', 'FontSize',15,'FontWeight','bold');
+ylabel('Computational Time', 'FontSize',15,'FontWeight','bold');
 
