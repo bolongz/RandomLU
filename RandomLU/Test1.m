@@ -1,9 +1,10 @@
 %A = gen_rand_mat_s_decay(500,400);
 %A = gen_rand_mat_slow_decay(500,400);
 %A = gen_rand_mat_exp_decay(500,400,7);%
+matrix_size = 500;
 %[A,~] = genTestMatrix(500, 500, 1); %slow decay 
 %[A,~] = genTestMatrix(500, 500, 2); %decay rapidly
-[A,~] = genTestMatrix(500, 500, 3); %S-shape
+[A,~] = genTestMatrix(matrix_size, matrix_size, 3); %S-shape
 kk = 100;
 ss = 10;
 step = 10;
@@ -21,32 +22,32 @@ rluerr1 = zeros(dim,1);
 rluerr2 = zeros(dim,1);
 svderr = zeros(dim,1);
 for i = 1:20
-    [powerlu_errs, ~] = PowerRandLU_errors(A,ss,kk,step,2, mode);
+    powerlu_errs = PowerRandLU_truncated_errors(A,ss,matrix_size,kk,step,2, mode);
     powerr = powerr + powerlu_errs;
     
-    [powerlu_errs, ~] = PowerRandLU_errors(A,ss,kk,step,3, mode);
+    powerlu_errs = PowerRandLU_truncated_errors(A,ss,matrix_size,kk,step,3, mode);
     powerr3 = powerr3 + powerlu_errs;
     
-    [powerlu_errs, ~] = PowerRandLU_errors(A,ss,kk,step,4, mode);
+    powerlu_errs = PowerRandLU_truncated_errors(A,ss,matrix_size,kk,step,4, mode);
     powerr4 = powerr4 + powerlu_errs;
 
-    [powerlu_errs, ~] = PowerRandLU_errors(A,ss,kk,step,5, mode);
+    powerlu_errs = PowerRandLU_truncated_errors(A,ss,matrix_size,kk,step,5, mode);
     powerr5 = powerr5 + powerlu_errs;
     
-    [powerlu_errs, ~] = PowerRandLU_errors(A,ss,kk,step,6, mode);
+    powerlu_errs = PowerRandLU_truncated_errors(A,ss,matrix_size, kk,step,6, mode);
     powerr6 = powerr6 + powerlu_errs;
     
-    [RandLU_errs, ~] = RandLU_errors( A,ss,kk,step, 0, mode);
+    RandLU_errs = RandLU_truncated_errors( A,ss,matrix_size, kk,step, 0, mode);
     rluerr = rluerr + RandLU_errs;
     
-    [RandLU_errs, ~] = RandLU_errors( A,ss,kk,step, 1, mode);
+    RandLU_errs = RandLU_truncated_errors( A,ss,matrix_size, kk,step, 1, mode);
     rluerr1 = rluerr1 + RandLU_errs;
     
-    [RandLU_errs, ~] = RandLU_errors( A,ss,kk,step, 2, mode);
+    RandLU_errs = RandLU_truncated_errors( A,ss,matrix_size, kk,step, 2, mode);
     rluerr2 = rluerr2 + RandLU_errs;   
     
 end
-svd_errs = SVD_errors(A, ss, kk, step,mode);
+svd_errs = SVD_errors(A, ss,kk, step,mode);
 
 powerr = [20; powerr];
 powerr3 = [20; powerr3];
@@ -96,28 +97,28 @@ rluerr2 = zeros(dim,1);
 svderr = zeros(dim,1);
 
 for i = 1:20
-    [powerlu_errs, ~] = PowerRandLU_errors(A,ss,kk,step,2, mode);
+    powerlu_errs = PowerRandLU_truncated_errors(A,ss,matrix_size, kk,step,2, mode);
     powerr = powerr + powerlu_errs;
     
-    [powerlu_errs, ~] = PowerRandLU_errors(A,ss,kk,step,3, mode);
+    powerlu_errs = PowerRandLU_truncated_errors(A,ss,matrix_size, kk,step,3, mode);
     powerr3 = powerr3 + powerlu_errs;
     
-    [powerlu_errs, ~] = PowerRandLU_errors(A,ss,kk,step,4, mode);
+    powerlu_errs = PowerRandLU_truncated_errors(A,ss,matrix_size, kk,step,4, mode);
     powerr4 = powerr4 + powerlu_errs;
 
-    [powerlu_errs, ~] = PowerRandLU_errors(A,ss,kk,step,5, mode);
+    powerlu_errs = PowerRandLU_truncated_errors(A,ss,matrix_size, kk,step,5, mode);
     powerr5 = powerr5 + powerlu_errs;
     
-    [powerlu_errs, ~] = PowerRandLU_errors(A,ss,kk,step,6, mode);
+    powerlu_errs = PowerRandLU_truncated_errors(A,ss,matrix_size, kk,step,6, mode);
     powerr6 = powerr6 + powerlu_errs;
     
-    [RandLU_errs, ~] = RandLU_errors( A,ss,kk,step, 0, mode);
+    RandLU_errs = RandLU_truncated_errors( A,ss,matrix_size, kk,step, 0, mode);
     rluerr = rluerr + RandLU_errs;
     
-    [RandLU_errs, ~] = RandLU_errors( A,ss,kk,step, 1, mode);
+    RandLU_errs = RandLU_truncated_errors( A,ss,matrix_size, kk,step, 1, mode);
     rluerr1 = rluerr1 + RandLU_errs;
     
-    [RandLU_errs, ~] = RandLU_errors( A,ss,kk,step, 2, mode);
+    RandLU_errs = RandLU_truncated_errors( A,ss,matrix_size, kk,step, 2, mode);
     rluerr2 = rluerr2 + RandLU_errs;   
     
 end

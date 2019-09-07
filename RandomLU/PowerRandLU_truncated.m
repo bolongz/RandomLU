@@ -32,5 +32,5 @@ end
 L = LL*L1';
 U = U';
 L = L(:, 1:k);
-U = U(1:k,);
+U = U(1:k,:);
 end

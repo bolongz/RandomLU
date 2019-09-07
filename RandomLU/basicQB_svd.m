@@ -1,4 +1,4 @@
-function [U, S, V]=basicQB_svd(A, k, P)
+function [U, S, V]=basicQB_svd(A, l, k, P)
 % [U, S, V]=basicQB_svd(A, k, P)
 % Rank-k truncated SVD of A based on the basic randQB algorithm.
 % Syntax:
@@ -13,9 +13,9 @@ if nargin<3,
     P=0;
 end
 
-s=5;               % over-sampling
+              % over-sampling
 [m,n]= size(A);
-B= randn(n, k+s);
+B= randn(n, l);
 U= A*B;
 [U, ~]= qr(U, 0);
 for j=1:P,
