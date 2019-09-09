@@ -15,7 +15,7 @@ function errs = randQB_siglepass_errors(A, ss, k, b, mode)
     
     for i = ss:b:k
         %[Q, B, Qt]= singlePass2011(A,i,b);
-        [Q, B, ~] = randQB_FP_k(A, i, b, 0);
+        [Q, B] = randQB_FP_k(A, i, b, 0);
         if strcmp(mode,'spec')
             er = norm(A- Q*B) / eigs(1); 
             errs = [errs; er];

@@ -2,18 +2,20 @@
 
 X = [3000:200:5000];
 dim = size(X,2);
+
 power_times = zeros(dim,1);
 rand_times = zeros(dim,1);
 power_times2 = zeros(dim,1);
 rand_times2 = zeros(dim,1);
 randqb_times = zeros(dim,1);
 randqb_times2 = zeros(dim,1);
+
 for i = 1:1:dim
     A = randn(X(i), X(i));
     for ii = 1:1:20
         dimm = 200;
         tic        
-        [ ~, ~, ~, ~] = PowerRandLU(A,dimm + 5, dimm,4);
+        [ ~, ~, ~, ~] = PowerLU(A,dimm + 5, dimm,4);
         t1 = toc;
         power_times(i) = power_times(i) + t1;
         t11 = toc;
@@ -21,7 +23,7 @@ for i = 1:1:dim
         t2 = toc;
         rand_times(i) = rand_times(i) + t2- t11;
         t22 = toc;
-        [ ~, ~, ~, ~] = PowerRandLU(A,dimm + 5, dimm,6);
+        [ ~, ~, ~, ~] = PowerLU(A,dimm + 5, dimm,6);
         t3 = toc;
         power_times2(i) = power_times2(i) + t3-t22;
         t33 = toc;

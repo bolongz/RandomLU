@@ -1,4 +1,4 @@
-function [Q, B, errs] = randQB_FP_k(A, k, bsize, p)
+function [Q, B] = randQB_FP_k(A, k, bsize, p)
 % [Q, B, errs] = rankQB_FP_k(A, k, bsize, p)
 % The randQB_FP algorithm with fixed rank k.
 % p is the power parameter, bsize is block size (usually a factor of k).
@@ -17,6 +17,7 @@ function [Q, B, errs] = randQB_FP_k(A, k, bsize, p)
     H = A' * G;
     % =========
     errs = [];
+    E= norm(A, 'fro')^2;
     r = 1;
     while r < k
         t = B * Omg(:, r:r+bsize-1);
@@ -30,6 +31,9 @@ function [Q, B, errs] = randQB_FP_k(A, k, bsize, p)
         Q = [Q, q];
         B = [B; b];
         r = r + bsize;
-        errs = [errs; norm(A-Q*B, 'fro')];
+        A = A - q * b;
+        E = norm(A, 'fro');
+        %E =  E- norm(b, 'fro')^2;
+        %ßerrs = [errs; norm(A-Q*B, 'fro')];
     end
 end

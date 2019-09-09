@@ -1,9 +1,8 @@
-function [Q, B, errs] = randQB_b_k(A, k, bs, p)
+function [Q, B] = randQB_b_k(A, k, bs, p)
 % [Q, B, errs] = randQB_b_k(A, k, bs, p)
 % The randQB_b algorithm with fixed rank k.
 % p is the power parameter, bs is rank-increase step (usually a factor of k).
 % errs is the error ||A-QB||_F.
-
     [m, n] = size(A);
     Q = [];
     B = [];
@@ -25,6 +24,7 @@ function [Q, B, errs] = randQB_b_k(A, k, bs, p)
         Q = [Q, q];
         B = [B; b];
         A_ = A_ - q * b;
+        E = norm(A_, 'fro');
         i = i + bs;
         %errs= [errs, norm(A-Q*B, 'fro')];
         %errs = [errs; errors(Q, B, A)];

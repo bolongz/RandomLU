@@ -1,10 +1,11 @@
 %% read image
 imname= 'image1.jpg';
 XX= imread(imname);
+
 X= double(XX)/255;
 if ndims(X) == 3
    image(X)
-   [m,n,p]= size(X);
+   [m,n,p]= size(X)
    if m>n,
        size(X(:,:,1))
        A= [X(:,:,1), X(:,:,2), X(:,:,3)]; 
