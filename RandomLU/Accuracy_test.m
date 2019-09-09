@@ -21,19 +21,19 @@ rluerr1 = zeros(dim,1);
 rluerr2 = zeros(dim,1);
 svderr = zeros(dim,1);
 for i = 1:20
-    [powerlu_errs, ~] = PowerRandLU_errors(A,ss,kk,step,2, mode);
+    [powerlu_errs, ~] = PowerLU_errors(A,ss,kk,step,2, mode);
     powerr = powerr + powerlu_errs;
     
-    [powerlu_errs, ~] = PowerRandLU_errors(A,ss,kk,step,3, mode);
+    [powerlu_errs, ~] = PowerLU_errors(A,ss,kk,step,3, mode);
     powerr3 = powerr3 + powerlu_errs;
     
-    [powerlu_errs, ~] = PowerRandLU_errors(A,ss,kk,step,4, mode);
+    [powerlu_errs, ~] = PowerLU_errors(A,ss,kk,step,4, mode);
     powerr4 = powerr4 + powerlu_errs;
 
-    [powerlu_errs, ~] = PowerRandLU_errors(A,ss,kk,step,5, mode);
+    [powerlu_errs, ~] = PowerLU_errors(A,ss,kk,step,5, mode);
     powerr5 = powerr5 + powerlu_errs;
     
-    [powerlu_errs, ~] = PowerRandLU_errors(A,ss,kk,step,6, mode);
+    [powerlu_errs, ~] = PowerLU_errors(A,ss,kk,step,6, mode);
     powerr6 = powerr6 + powerlu_errs;
     
     [RandLU_errs, ~] = RandLU_errors( A,ss,kk,step, 0, mode);
@@ -96,19 +96,19 @@ rluerr2 = zeros(dim,1);
 svderr = zeros(dim,1);
 
 for i = 1:20
-    [powerlu_errs, ~] = PowerRandLU_errors(A,ss,kk,step,2, mode);
+    [powerlu_errs, ~] = PowerLU_errors(A,ss,kk,step,2, mode);
     powerr = powerr + powerlu_errs;
     
-    [powerlu_errs, ~] = PowerRandLU_errors(A,ss,kk,step,3, mode);
+    [powerlu_errs, ~] = PowerLU_errors(A,ss,kk,step,3, mode);
     powerr3 = powerr3 + powerlu_errs;
     
-    [powerlu_errs, ~] = PowerRandLU_errors(A,ss,kk,step,4, mode);
+    [powerlu_errs, ~] = PowerLU_errors(A,ss,kk,step,4, mode);
     powerr4 = powerr4 + powerlu_errs;
 
-    [powerlu_errs, ~] = PowerRandLU_errors(A,ss,kk,step,5, mode);
+    [powerlu_errs, ~] = PowerLU_errors(A,ss,kk,step,5, mode);
     powerr5 = powerr5 + powerlu_errs;
     
-    [powerlu_errs, ~] = PowerRandLU_errors(A,ss,kk,step,6, mode);
+    [powerlu_errs, ~] = PowerLU_errors(A,ss,kk,step,6, mode);
     powerr6 = powerr6 + powerlu_errs;
     
     [RandLU_errs, ~] = RandLU_errors( A,ss,kk,step, 0, mode);
