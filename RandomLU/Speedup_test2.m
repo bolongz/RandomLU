@@ -1,6 +1,6 @@
 %A = gen_rand_mat_s_decay(1000,800, 7);
 
-X = [500:100:1000];
+X = [1000:100:3000];
 dim = size(X,2);
 
 randqbb_times = zeros(dim,1);
@@ -13,7 +13,7 @@ powerlufp_times2 = zeros(dim,1);
 for i = 1:1:dim
     A = randn(X(i), X(i));
     for ii = 1:1:20
-        dimm = 100;
+        dimm = 200;
         tic   
         [~, ~] = randQB_b_k(A, dimm,10, 1);
         randqbb_times(i) = randqbb_times(i) + toc;
