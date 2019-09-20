@@ -38,7 +38,7 @@ function [Q, B, k] = randQB_FP_auto(A, relerr, b, P)
         Q = [Q, Qi];
         B = [B; Bi];
                 
-        temp = abs(E- norm(Bi, 'fro')^2)
+        temp = abs(E- norm(Bi, 'fro')^2);
         
         if temp< threshold,     % for precise rank determination 
             for j=1:b,

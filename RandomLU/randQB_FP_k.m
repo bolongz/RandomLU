@@ -31,9 +31,9 @@ function [Q, B] = randQB_FP_k(A, k, bsize, p)
         Q = [Q, q];
         B = [B; b];
         r = r + bsize;
-        A = A - q * b;
-        E = norm(A, 'fro');
-        %E =  E- norm(b, 'fro')^2;
+        %A = A - q * b;
+        %E = norm(A, 'fro');
+        E =  E- norm(b, 'fro')^2;
         %ßerrs = [errs; norm(A-Q*B, 'fro')];
     end
 end

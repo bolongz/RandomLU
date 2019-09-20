@@ -43,12 +43,12 @@ k
 %}
 
 clear all;
-%readImage;
-[A,~] = genTestMatrix(1000, 1000, 3);
+readImage;
+%[A,~] = genTestMatrix(1000, 1000, 3);
 %[Q, B, k]= AdpRangeFinder(A, 0.1); k
-tic; [Q, B, k]= randQB_EI_auto(A, 0.01, 10, 2); toc
+tic; [Q, B, k]= randQB_FP_auto(A, 0.1, 10, 2); toc
 k
-tic; [ L, U, P1, P2, k] = PowerRandLU_FP(A,0.01, 4, 500); toc
+tic; [ L, U, P1, P2, k] = PowerLU_FP(A,0.1, 4, 500); toc
 k
 
 %{
@@ -66,10 +66,9 @@ k
 
 %}
 
-%{
+
 BB = L * U;
 CC = reshape(BB', [4752,3168, 3]);
 
 CC = permute(CC, [2,1,3]);
 figure, imshow(CC)
-%}

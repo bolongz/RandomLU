@@ -1,11 +1,14 @@
-function [ L, U, P1, P2] = PowerLU_FP_k(A,k,b,q)
+function [ L, U] = PowerLU_b_k(A,l, k,b,q)
 [m, n]=size(A);
 
 L = zeros(m,k);
 U = zeros(k,n);
 
+%L = [];
+%U = [];
+%L_inv = [];
 if mod(q, 2) == 0
-    Omega = randn(m,k);
+    Omega = randn(m,l);
     if q > 2
         [VV, ~] =  lu(A' * Omega);
     else
@@ -13,7 +16,7 @@ if mod(q, 2) == 0
     end
 else
 
-    Omega = rand(n,k);
+    Omega = rand(n,l);
     if q > 2
         [VV, ~] =  lu(Omega);
     else
@@ -31,24 +34,71 @@ for ii = 1:v
     end
 end    
 %G = A * VV;
-P1 = [];
+%P1 = [];
 
-P2 = [];
+%P2 = [];
 %E = 0;
 %E = norm(A, 'fro');
-maxiter = 500;
-acc= (norm(A, 'fro')^2);%/(10*sqrt(2/pi))
+%maxiter = 500;
+%ßacc= (norm(A, 'fro')^2);%/(10*sqrt(2/pi))
+E = norm(A, 'fro');
+
+%{
 for i = 1:1: k/b
-    %if i >1 
+  
+    [L1, ~] = lu(A * VV(:, (i-1) * b + 1 : i*b));
+ 
+    if i > 1
+    
+        [L1, ~] = lu(L1 - L * (L_inv * L1));
+    end
+    L1_inv = Fastpinv(L1, 'regular');
+    L_inv = [L_inv; L1_inv];
+    
+    B = L1_inv * A;
+    L= [L, L1];
+    U= [U; B];
+    A = A - L1 * B;
+    E = norm(A, 'fro')^2;
+   
+    %{
+    if E < acc
+        for ii = 1:b
+            A = A -  L(:, (i-1) * b + ii) * U((i-1) * b + ii, :);
+            E = norm(A, 'fro')^2;
+            if E < acc
+                flag = true;
+                break;
+            end
+        end
+    else
+        A = A_;
+    end
+    if flag,
+        k= (i-1)*b+ii;
+        break;
+    end
+    i = i + 1;
+    %}
+end
+%}
+
+
+for i = 1:1: k/b
+  %if i >1 
     %    [L1, U1] = lu(G(:, (i-1) * b + 1 : i*b) - L(:, 1:(i-1) * b) * U(1:(i-1) * b, :)* VV(:, (i-1) * b + 1 : i*b));
     %else
     [L1, U1] = lu(A * VV(:, (i-1) * b + 1 : i*b));
     %end
     L(:, (i-1) * b + 1: i *b) = L1; 
     U((i-1) * b + 1: i *b, :) =  U1 * VV(:, (i-1) * b + 1 : i*b)';
-    A_ = A -  L(:, (i-1) * b + 1: i *b) * U((i-1) * b + 1: i *b, :);
-    E = norm(A_, 'fro')^2;
-    
+    A = A -  L(:, (i-1) * b + 1: i *b) * U((i-1) * b + 1: i *b, :);
+    E = norm(A, 'fro')^2;
+    %A = A -  L(:, (i-1) * b + 1: i *b) * U((i-1) * b + 1: i *b, :);
+    %E = norm(A_, 'fro')^2;
+    %if E < acc
+    %    break;
+    %end
     %{
     if E < acc
         for ii = 1:b

@@ -10,12 +10,9 @@ function [errs, times] = RandLU_errors(A, ss, k, b,p, mode)
 
     end
     errs = [];
-    times = [];
     
     for i = ss:b:k
-        tic
-        [L, U, p_left, p_right] = randomizedLU(A,i+3,i,p,'regular');
-        times = [times; toc];
+        [L, U, p_left, p_right] = randomizedLU(A,i+5,i,p,'regular');
         L = L( TransposePermutation(p_left),:);
         U = U(:,TransposePermutation(p_right));  
         

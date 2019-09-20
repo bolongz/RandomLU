@@ -1,4 +1,4 @@
-function [ L, U, P1, P2, fk] = PowerLU_FP(A,relerr,q, maxcol)
+function [ L, U, P1, P2, fk] = PowerLU_blocked(A,relerr,q, maxcol)
 %RANDOMIZEDLU Performs randomized LU Decomposition up to a given rank
 %   Parameters:
 %   A - matrix to be factorized.
@@ -20,8 +20,11 @@ if nargin<3,
     maxcol= 200;    % for precalculating a large number of random vectors.
 end
 tic
-L =zeros(m,maxcol);
-U = zeros(maxcol,n);
+%L =zeros(m,maxcol);
+%U = zeros(maxcol,n);
+L = [];
+U = [];
+L_inv = [];
 flag = false;
 acc= relerr^2*(norm(A, 'fro')^2);%/(10*sqrt(2/pi))
 %acc= relerr*norm(A);
@@ -52,12 +55,57 @@ for ii = 1:v
         [VV, ~] = lu(A' * VV);
     end
 end    
-%G = A * VV;
+G = A * VV;
 
 i = 1;
 E = 10000000000;
 k = 0;
+%{
+while E > acc && i * b < maxcol,
+    %if i >1 
+    %    [L1, U1] = lu(G(:, (i-1) * b + 1 : i*b) - L(:, 1:(i-1) * b) * U(1:(i-1) * b, :)* VV(:, (i-1) * b + 1 : i*b));
+    %else
+    [L1, ~] = lu(A * VV(:, (i-1) * b + 1 : i*b));
+    %end
+    %L(:, (i-1) * b + 1: i *b) = L1; 
+    %U((i-1) * b + 1: i *b, :) =  U1 * VV(:, (i-1) * b + 1 : i*b)';
+    if i > 1
+    
+        [L1, ~] = lu(L1 - L * (L_inv * L1));
+    end
+    L1_inv = Fastpinv(L1,  'regular');
+    L_inv = [L_inv;L1_inv];
+    B = L1_inv * A;
+    L= [L, L1];
+    U= [U; B];
+    A_ = A - L1 * B;
+    E = norm(A_, 'fro')^2;
+    if E < acc
+        %{
+        for ii = 1:b
+            A = A -  L(:, (i-1) * b + ii) * U((i-1) * b + ii, :);
+            E = norm(A, 'fro')^2;
+            if E < acc
+                flag = true;
+                break;
+            end
+        end
+        %}
+        flag = true;
+        k = i * b;
+        break;
+    else
+        A = A_;
+    end
+    if flag,
+        k= (i-1)*b+ii;
+        break;
+    end
+    i = i + 1;
+end
+%}
 
+%{
 while E > acc && i * b < maxcol,
     %if i >1 
     %    [L1, U1] = lu(G(:, (i-1) * b + 1 : i*b) - L(:, 1:(i-1) * b) * U(1:(i-1) * b, :)* VV(:, (i-1) * b + 1 : i*b));
@@ -86,37 +134,29 @@ while E > acc && i * b < maxcol,
     end
     i = i + 1;
 end
+%}
 
-%{
+E= norm(A, 'fro')^2;
+
 while E > acc && i * b < maxcol,
-    if i >1 
-        [L1, U1] = lu(G(:, (i-1) * b + 1 : i*b) - L(:, 1:(i-1) * b) * U(1:(i-1) * b, :)* VV(:, (i-1) * b + 1 : i*b));
+   if i >1 
+        [L1, U1] = lu(G(:, (i-1) * b + 1 : i*b) - L(:, 1:(i-1) * b) * (U(1:(i-1) * b, :)* VV(:, (i-1) * b + 1 : i*b)));
     else
         [L1, U1] = lu(G(:, (i-1) * b + 1 : i*b));
     end
     L(:, (i-1) * b + 1: i *b) = L1; 
     U((i-1) * b + 1: i *b, :) =  U1 * VV(:, (i-1) * b + 1 : i*b)';
-    A_ = A -  L(:, (i-1) * b + 1: i *b) * U((i-1) * b + 1: i *b, :);
-    E = norm(A_, 'fro')^2;
+    E = E - norm(L1 * U1 , 'fro')^2
+    %A = A -  L(:, (i-1) * b + 1: i *b) * U((i-1) * b + 1: i *b, :);
+    %E = norm(A_, 'fro')^2;
     if E < acc
-        for ii = 1:b
-            A = A -  L(:, (i-1) * b + ii) * U((i-1) * b + ii, :);
-            E = norm(A, 'fro')^2;
-            if E < acc
-                flag = true;
-                break;
-            end
-        end
-    else
-        A = A_;
-    end
-    if flag,
-        k= (i-1)*b+ii;
+        k= i*b;
         break;
     end
-    i = i + 1;
+    i = i +1;
+  
 end
-%}
+
 
 if E > acc
     fprintf('Warning: the accuracy is not attained with the maximum iteration: %d', maxcol);

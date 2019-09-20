@@ -1,4 +1,4 @@
-function [ L, U, P1, P2] = PowerRandLU(A,l,k,q)
+function [ L, U, P1, P2] = PowerLU(A,l,k,q)
 
 [m, n]=size(A);
 

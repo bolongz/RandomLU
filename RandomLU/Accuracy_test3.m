@@ -2,8 +2,8 @@
 %A = gen_rand_mat_slow_decay(500,400);
 %A = gen_rand_mat_exp_decay(500,400,7);%
 %[A,~] = genTestMatrix(500, 500, 1); %slow decay 
-[A,~] = genTestMatrix(500, 500, 2); %decay rapidly
-%[A,~] = genTestMatrix(500, 500, 3); %S-shape
+%[A,~] = genTestMatrix(500, 500, 1); %decay rapidly
+[A,~] = genTestMatrix(500, 500, 3); %S-shape
 kk = 100;
 ss = 10;
 step = 10;
@@ -116,34 +116,34 @@ powerr6fp = zeros(dim,1);
 
 
 for i = 1:20
-    [powerlu_errs, ~, ~] = PowerLU_errors_FP(A,ss,kk,step,2, mode);
+    [powerlu_errs, ~] = PowerLU_errors(A,ss,kk,step,2, mode);
     powerr = powerr + powerlu_errs;
     
-    [powerlu_errs, ~, ~] = PowerLU_errors_FP(A,ss,kk,step,3, mode);
+    [powerlu_errs, ~] = PowerLU_errors(A,ss,kk,step,3, mode);
     powerr3 = powerr3 + powerlu_errs;
     
-    [powerlu_errs, ~, ~] = PowerLU_errors_FP(A,ss,kk,step,4, mode);
+    [powerlu_errs, ~] = PowerLU_errors(A,ss,kk,step,4, mode);
     powerr4 = powerr4 + powerlu_errs;
 
-    [powerlu_errs, ~, ~] = PowerLU_errors_FP(A,ss,kk,step,5, mode);
+    [powerlu_errs, ~] = PowerLU_errors(A,ss,kk,step,5, mode);
     powerr5 = powerr5 + powerlu_errs;
     
-    [powerlu_errs, ~, ~] = PowerLU_errors_FP(A,ss,kk,step,6, mode);
+    [powerlu_errs, ~] = PowerLU_errors(A,ss,kk,step,6, mode);
     powerr6 = powerr6 + powerlu_errs;
     
-    [powerlu_errs, ~] = PowerLU_errors_FP(A,ss,kk,step,2, mode);
+    [powerlu_errs, ~, ~] = PowerLU_errors_FP(A,ss,kk,step,2, mode);
     powerrfp = powerrfp + powerlu_errs;
     
-    [powerlu_errs, ~] = PowerLU_errors_FP(A,ss,kk,step,3, mode);
+    [powerlu_errs, ~, ~] = PowerLU_errors_FP(A,ss,kk,step,3, mode);
     powerr3fp = powerr3fp + powerlu_errs;
     
-    [powerlu_errs, ~] = PowerLU_errors_FP(A,ss,kk,step,4, mode);
+    [powerlu_errs, ~, ~] = PowerLU_errors_FP(A,ss,kk,step,4, mode);
     powerr4fp = powerr4fp + powerlu_errs;
 
-    [powerlu_errs, ~] = PowerLU_errors_FP(A,ss,kk,step,5, mode);
+    [powerlu_errs, ~, ~] = PowerLU_errors_FP(A,ss,kk,step,5, mode);
     powerr5fp = powerr5fp + powerlu_errs;
     
-    [powerlu_errs, ~] = PowerLU_errors_FP(A,ss,kk,step,6, mode);
+    [powerlu_errs, ~, ~] = PowerLU_errors_FP(A,ss,kk,step,6, mode);
     powerr6fp = powerr6fp + powerlu_errs;
     
 end

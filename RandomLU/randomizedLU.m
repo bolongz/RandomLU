@@ -66,14 +66,18 @@ if q>0
     for ii = 1:q
         [Y, ~] = lu(A' * Y);
         if ii == q
-            [Y, ~] = qr(A * Y, 0);  
+            %[Y, ~] = qr(A * Y, 0); 
+            [Ly,~, Py]  = lu(A * Y, 'vector');  
+
         else
             [Y, ~] = lu(A * Y);
         end
     end
+else
+    [Ly,~, Py]  = lu(A * Y, 'vector');
 end
 
-[Ly, ~, Py] = lu(Y,'vector');
+%[Ly, ~, Py] = lu(Y,'vector');
 if l>k
     Ly = Ly(:,1:k);
 end
@@ -88,5 +92,4 @@ if strcmp(mode,'full')
     L = [L zeros(n,n-k)];
     U = [U; zeros(n-k,m)];
 end
-
 end

@@ -1,5 +1,5 @@
 
-function [errs, L, U] = PowerLU_errors_FP(A, ss, k, b,p, mode)
+function [errs, L, U] = PowerLU_blocked_errors(A, ss, k, b,p, mode)
 % [errs, Q, B] = SVD_errors(A, k, b)
 % Using standard svd to get the optimal approximation error.
 % k is the rank parameter, b is rank-increase step (usually a factor of k).
