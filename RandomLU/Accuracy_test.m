@@ -39,10 +39,10 @@ for i = 1:20
     powerlu_errs = PowerLU_errors(A,ss,kk,step,2, mode);
     powerlu_err2 = powerlu_err2 + powerlu_errs;
     
-    powerlu_errs = PowerLU_errors(A,ss,kk,step,3, mode);
+    powerlu_errs = PowerLU_errors(A,ss,kk,step,4, mode);
     powerlu_err4 = powerlu_err4 + powerlu_errs;
     
-    powerlu_errs = PowerLU_errors(A,ss,kk,step,4, mode);
+    powerlu_errs = PowerLU_errors(A,ss,kk,step,6, mode);
     powerlu_err6 = powerlu_err6 + powerlu_errs;
 
    
@@ -68,20 +68,20 @@ for i = 1:20
      powerlu_errs = PowerLU_b_errors(A,ss,kk,step,2, mode);
     powerlu_b_err2 = powerlu_b_err2 + powerlu_errs;
     
-    powerlu_errs = PowerLU_b_errors(A,ss,kk,step,3, mode);
+    powerlu_errs = PowerLU_b_errors(A,ss,kk,step,4, mode);
     powerlu_b_err4 = powerlu_b_err4 + powerlu_errs;
     
-    powerlu_errs = PowerLU_b_errors(A,ss,kk,step,4, mode);
+    powerlu_errs = PowerLU_b_errors(A,ss,kk,step,6, mode);
     powerlu_b_err6 = powerlu_b_err6 + powerlu_errs;
 
     
     powerlu_errs = PowerLU_eb_errors(A,ss,kk,step,2, mode);
     powerlu_eb_err2 = powerlu_eb_err2 + powerlu_errs;
     
-    powerlu_errs = PowerLU_eb_errors(A,ss,kk,step,3, mode);
+    powerlu_errs = PowerLU_eb_errors(A,ss,kk,step,4, mode);
     powerlu_eb_err4 = powerlu_eb_err4 + powerlu_errs;
     
-    powerlu_errs = PowerLU_eb_errors(A,ss,kk,step,4, mode);
+    powerlu_errs = PowerLU_eb_errors(A,ss,kk,step,6, mode);
     powerlu_eb_err6 = powerlu_eb_err6 + powerlu_errs;
     
 end
