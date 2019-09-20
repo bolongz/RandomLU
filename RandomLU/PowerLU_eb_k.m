@@ -83,38 +83,10 @@ end
 %}
 E = norm(A, 'fro');
 for i = 1:1: k/b
-    %if i >1 
     [L1, U1] = lu(G(:, (i-1) * b + 1 : i*b) - L(:, 1:(i-1) * b) * (U(1:(i-1) * b, :)* VV(:, (i-1) * b + 1 : i*b)));
-    %else
-    %[L1, U1] = lu(G(:, (i-1) * b + 1 : i*b));
-    %end
     L(:, (i-1) * b + 1: i *b) = L1; 
     U((i-1) * b + 1: i *b, :) =  U1 * VV(:, (i-1) * b + 1 : i*b)';
     E = E - norm(L1 * U1, 'fro')^2;
-    %A = A -  L(:, (i-1) * b + 1: i *b) * U((i-1) * b + 1: i *b, :);
-    %E = norm(A_, 'fro')^2;
-    %if E < acc
-    %    break;
-    %end
-    %{
-    if E < acc
-        for ii = 1:b
-            A = A -  L(:, (i-1) * b + ii) * U((i-1) * b + ii, :);
-            E = norm(A, 'fro')^2;
-            if E < acc
-                flag = true;
-                break;
-            end
-        end
-    else
-        A = A_;
-    end
-    if flag,
-        k= (i-1)*b+ii;
-        break;
-    end
-    i = i + 1;
-    %}
+   
 end
-%}
 end

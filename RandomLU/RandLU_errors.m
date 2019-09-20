@@ -1,5 +1,5 @@
 
-function [errs, times] = RandLU_errors(A, ss, k, b,p, mode)
+function errs = RandLU_errors(A, ss, k, b,p, mode)
  
     if strcmp(mode,'spec')
         [~, S, ~] = svds(A, k+1);

@@ -13,7 +13,7 @@ function errs = PowerLU_b_errors(A, ss, k, b,p, mode)
     errs = [];
     
     for i = ss:b:k
-        [ L, U] = PowerLU_b_k(A,i+5, i,p);
+        [ L, U] = PowerLU_b_k(A,i+5, i,b, p);
         if strcmp(mode,'spec')
             er = norm(A-L * U) / eigs(1); 
             errs = [errs; er];

@@ -1,5 +1,5 @@
 
-function [errs, times] = randSVD_errors(A, ss, k, b,p, mode)
+function errs = randSVD_errors(A, ss, k, b,p, mode)
     if nargin>5
         mode = 'spec';
         [~, S, ~] = svds(A, k+1);
@@ -12,9 +12,7 @@ function [errs, times] = randSVD_errors(A, ss, k, b,p, mode)
     times = [];
     
     for i = ss:b:k
-        tic
         [U,S,V] = basicQB_svd(A, i, p);
-        times = [times; toc];     
         if strcmp(mode,'spec')
             er = norm(A-U*S*V')/eigs(1); 
             errs = [errs; er];

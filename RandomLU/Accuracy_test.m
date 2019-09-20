@@ -16,9 +16,19 @@ powerlu_err2 = zeros(dim,1);
 powerlu_err4 = zeros(dim,1);
 powerlu_err6 = zeros(dim,1);
 
+powerlu_b_err2 = zeros(dim,1);
+powerlu_b_err4 = zeros(dim,1);
+powerlu_b_err6 = zeros(dim,1);
+
+
 rlu_err = zeros(dim,1);
 rlu_er1 = zeros(dim,1);
 rlu_err2 = zeros(dim,1);
+
+rsvd_err = zeros(dim,1);
+rsvd_er1 = zeros(dim,1);
+rsvd_err2 = zeros(dim,1);
+
 svderr = zeros(dim,1);
 for i = 1:20
     
@@ -32,14 +42,43 @@ for i = 1:20
     powerlu_err6 = powerlu_err6 + powerlu_errs;
 
    
-    [RandLU_errs, ~] = RandLU_errors( A,ss,kk,step, 0, mode);
+    RandLU_errs = RandLU_errors( A,ss,kk,step, 0, mode);
     rlu_err = rlu_err + RandLU_errs;
     
-    [RandLU_errs, ~] = RandLU_errors( A,ss,kk,step, 1, mode);
+    RandLU_errs = RandLU_errors( A,ss,kk,step, 1, mode);
     rlu_err1 = rlu_err1 + RandLU_errs;
     
-    [RandLU_errs, ~] = RandLU_errors( A,ss,kk,step, 2, mode);
-    rlu_err2 = rlu_err2 + RandLU_errs;   
+    RandLU_errs = RandLU_errors( A,ss,kk,step, 2, mode);
+    rlu_err2 = rlu_err2 + RandLU_errs;
+    
+    
+    randsvd_errs = randSVD_errors( A,ss,kk,step, 0, mode);
+    rsvd_err = rsvd_err + RandLU_errs;
+    
+    randsvd_errs = randSVD_errors( A,ss,kk,step, 1, mode);
+    rsvd_err1 = rsvd_err1 + RandLU_errs;
+    
+    RandLU_errs  = RandLU_errors( A,ss,kk,step, 2, mode);
+    rsvd_err2 = rsvd_err2 + RandLU_errs;  
+    
+     powerlu_errs = PowerLU_b_errors(A,ss,kk,step,2, mode);
+    powerlu_b_err2 = powerlu_b_err2 + powerlu_errs;
+    
+    powerlu_errs = PowerLU_b_errors(A,ss,kk,step,3, mode);
+    powerlu_b_err4 = powerlu_b_err4 + powerlu_errs;
+    
+    powerlu_errs = PowerLU_b_errors(A,ss,kk,step,4, mode);
+    powerlu_b_err6 = powerlu_b_err6 + powerlu_errs;
+
+    
+    powerlu_errs = PowerLU_eb_errors(A,ss,kk,step,2, mode);
+    powerlu_eb_err2 = powerlu_eb_err2 + powerlu_errs;
+    
+    powerlu_errs = PowerLU_eb_errors(A,ss,kk,step,3, mode);
+    powerlu_eb_err4 = powerlu_eb_err4 + powerlu_errs;
+    
+    powerlu_errs = PowerLU_eb_errors(A,ss,kk,step,4, mode);
+    powerlu_eb_err6 = powerlu_eb_err6 + powerlu_errs;
     
 end
 svd_errs = SVD_errors(A, ss, kk, step,mode);
