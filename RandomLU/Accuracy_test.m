@@ -3,8 +3,8 @@
 %A = gen_rand_mat_exp_decay(500,400,7);%
 %[A,~] = genTestMatrix(500, 500, 1); %slow decay 
 %[A,~] = genTestMatrix(500, 500, 2); %decay rapidly
-[A,~] = genTestMatrix(500, 500, 3); %S-shape
-kk = 100;
+[A,~] = genTestMatrix(2000, 2000, 2); %S-shape
+kk = 200;
 ss = 10;
 step = 10;
 X = [ss:step:kk];
@@ -15,10 +15,6 @@ dim = size(X,2);
 powerlu_err2 = zeros(dim,1);
 powerlu_err4 = zeros(dim,1);
 powerlu_err6 = zeros(dim,1);
-
-powerlu_b_err2 = zeros(dim,1);
-powerlu_b_err4 = zeros(dim,1);
-powerlu_b_err6 = zeros(dim,1);
 
 
 rlu_err = zeros(dim,1);
@@ -61,10 +57,10 @@ for i = 1:20
     
     
     randsvd_errs = randSVD_errors( A,ss,kk,step, 0, mode);
-    rsvd_err = rsvd_err + RandLU_errs;
+    rsvd_err = rsvd_err + randsvd_errs;
     
     randsvd_errs = randSVD_errors( A,ss,kk,step, 1, mode);
-    rsvd_err1 = rsvd_err1 + RandLU_errs;
+    rsvd_err1 = rsvd_err1 + randsvd_errs;
     
     randsvd_errs  = randSVD_errors( A,ss,kk,step, 2, mode);
     rsvd_err2 = rsvd_err2 + randsvd_errs;  
@@ -115,7 +111,7 @@ svd_errs = [1; svd_errs];
 X = [0, X];
 
 %profile report
-subplot(1,2,1)
+%subplot(1,2,1)
 h1 = semilogy(X, svd_errs, '-r','LineWidth', 1.5, 'MarkerSize', 8);
 hold on
 h2 = semilogy(X, rsvd_err/20, '--k', 'LineWidth', 1.5, 'MarkerSize', 8);

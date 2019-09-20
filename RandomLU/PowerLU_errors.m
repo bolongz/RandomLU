@@ -13,7 +13,7 @@ function errs = PowerLU_errors(A, ss, k, b,p, mode)
     errs = [];
     
     for i = ss:b:k
-        [ L, U, p_left, p_right] = PowerLU(A,i+5, i,p);
+        [ L, U, p_left, p_right] = PowerLU(A,i+3, i,p);
         L = L( TransposePermutation(p_left),:);
         U = U(:,TransposePermutation(p_right)); 
         if strcmp(mode,'spec')
