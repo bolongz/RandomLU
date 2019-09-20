@@ -1,6 +1,6 @@
 
 function errs = randSVD_errors(A, ss, k, b,p, mode)
-    if nargin>5
+    if strcmp(mode, 'spec')
         mode = 'spec';
         [~, S, ~] = svds(A, k+1);
         eigs = diag(S);

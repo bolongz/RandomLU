@@ -53,31 +53,30 @@ end
 
 Y= A*Omega;
 
-%{
+
 if q>0
     for ii = 1:q
         Y=A*(A'*Y);
     end
 end
 
-Y = Y(:, 1:k);
-%}
+%{
 if q>0
     for ii = 1:q
         [Y, ~] = lu(A' * Y);
         if ii == q
-            %[Y, ~] = qr(A * Y, 0); 
-            [Ly,~, Py]  = lu(A * Y, 'vector');  
+            [Y, ~] = qr(A * Y, 0); 
+            %[Ly,~, Py]  = lu(A * Y, 'vector');  
 
         else
             [Y, ~] = lu(A * Y);
         end
     end
 else
-    [Ly,~, Py]  = lu(A * Y, 'vector');
+    [Ly,~, Py]  = lu(Y, 'vector');
 end
-
-%[Ly, ~, Py] = lu(Y,'vector');
+%}
+[Ly, ~, Py] = lu(Y,'vector');
 if l>k
     Ly = Ly(:,1:k);
 end
