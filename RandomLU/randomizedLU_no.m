@@ -1,4 +1,4 @@
-function [ L, U, P1, P2] = randomizedLU( A,l,k,q,mode, gpu, density)
+function [ L, U, P1, P2] = randomizedLU_no( A,l,k,q,mode, gpu, density)
 %RANDOMIZEDLU Performs randomized LU Decomposition up to a given rank
 %   Parameters:
 %   A - matrix to be factorized.
@@ -53,29 +53,14 @@ end
 
 Y= A*Omega;
 
-%{
+
 if q>0
     for ii = 1:q
         Y=A*(A'*Y);
     end
 end
-%}
 
-if q>0
-    for ii = 1:q
-        [Y, ~] = lu(A' * Y);
-        if ii == q
-            %[Y, ~] = qr(A * Y, 0); 
-            [Ly,~, Py]  = lu(A * Y, 'vector');  
-        else
-            [Y, ~] = lu(A * Y);
-        end
-    end
-else
-    [Ly,~, Py]  = lu(Y, 'vector');
-end
-
-% [Ly, ~, Py] = lu(Y,'vector');
+[Ly, ~, Py] = lu(Y,'vector');
 if l>k
     Ly = Ly(:,1:k);
 end
