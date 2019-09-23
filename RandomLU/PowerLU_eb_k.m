@@ -40,7 +40,7 @@ G = A * VV;
 %E = 0;
 %E = norm(A, 'fro');
 %maxiter = 500;
-acc= (norm(A, 'fro')^2);%/(10*sqrt(2/pi))
+E = norm(A, 'fro')^2;
 
 %{
 for i = 1:1: k/b
@@ -81,7 +81,7 @@ for i = 1:1: k/b
     %}
 end
 %}
-E = norm(A, 'fro');
+
 for i = 1:1: k/b
     [L1, U1] = lu(G(:, (i-1) * b + 1 : i*b) - L(:, 1:(i-1) * b) * (U(1:(i-1) * b, :)* VV(:, (i-1) * b + 1 : i*b)));
     L(:, (i-1) * b + 1: i *b) = L1; 

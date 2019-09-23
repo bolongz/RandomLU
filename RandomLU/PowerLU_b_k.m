@@ -41,8 +41,6 @@ end
 %E = norm(A, 'fro');
 %maxiter = 500;
 %ßacc= (norm(A, 'fro')^2);%/(10*sqrt(2/pi))
-E = norm(A, 'fro');
-
 %{
 for i = 1:1: k/b
   

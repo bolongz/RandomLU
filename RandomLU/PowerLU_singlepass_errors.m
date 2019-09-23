@@ -1,5 +1,5 @@
 
-function [errs, times] = PowerLU_singlepass_errors(A, ss, k, b, mode)
+function errs = PowerLU_singlepass_errors(A, ss, k, b, mode)
  
     if strcmp(mode,'spec')
         mode = 'spec';
@@ -14,9 +14,7 @@ function [errs, times] = PowerLU_singlepass_errors(A, ss, k, b, mode)
     times = [];
     
     for i = ss:b:k
-        tic        
         [ L, U, p_left, p_right] = PowerLU_singlepass(A,i);
-        times = [times; toc];
         L = L( TransposePermutation(p_left),:);
         U = U(:,TransposePermutation(p_right)); 
         if strcmp(mode,'spec')
