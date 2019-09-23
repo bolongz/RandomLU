@@ -46,9 +46,9 @@ clear all;
 readImage;
 %[A,~] = genTestMatrix(1000, 1000, 3);
 %[Q, B, k]= AdpRangeFinder(A, 0.1); k
-tic; [Q, B, k]= randQB_FP_auto(A, 0.1, 10, 2); toc
+tic; [Q, B, k]= randQB_FP_auto(A, 0.1, 10, 1); toc
 k
-tic; [ L, U, P1, P2, k] = PowerLU_FP(A,0.1, 4, 500); toc
+tic; [ L, U, k] = PowerLU_eb(A,0.1, 10, 4); toc
 k
 
 %{

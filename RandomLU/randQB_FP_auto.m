@@ -10,35 +10,39 @@ function [Q, B, k] = randQB_FP_auto(A, relerr, b, P)
     Q = zeros(m, 0);
     B = zeros(0, n);
 
-    maxiter= 400;                % this may be changed case by case.
-    %maxiter= min(maxiter, ceil(min(m,n)/3/b));
- 
+    maxiter= 50;                % this may be changed case by case.
+    maxiter= min(maxiter, ceil(min(m,n)/3/b));
+    l= b*maxiter;               % an emperical setting of l.
+    Omg = randn(n, l);
+    while P > 0     % power scheme
+        [G, ~] = qr(A * Omg, 0);
+        [Omg, ~] = qr(A' * G, 0);
+        P = P - 1;
+    end
+    G = A * Omg;
+    H = A' * G;
     % =========
     E= norm(A, 'fro')^2;
     E0= E;
-    threshold= relerr^2*E  
+    threshold= relerr^2*E;    
     r = 1;
     flag= false;
     
     for i=1:maxiter,
-        Omg = randn(n, b);
-        Y = A * Omg - (Q * (B * Omg));
-        [Qi, ~] = qr(Y, 0);
+        t = B * Omg(:, r:r+b-1);
+        Y = G(:, r:r+b-1) - (Q * t);
+        [Qi, R] = qr(Y, 0);
         
-        for j = 1:P        % power scheme
-            [Qi, ~] = qr(A'*Qi - B'*(Q'*Qi), 0);  % can skip orthonormalization for small b.
-            [Qi, ~] = qr(A*Qi - Q*(B*Qi), 0);
-        end
-        
-        if r>1,            % can skip the first re-orthogonalization
-            [Qi, ~] = qr(Qi - Q * (Q' * Qi), 0);
-        end
-        Bi= Qi'*A;  % another choice is Bi = Qi' * A - Qi' * Q * B;
+        [Qi, R1] = qr(Qi - Q * (Q' * Qi), 0);
+        R = R1 * R;
+           
+        Bi = R' \ ((H(:, r:r+b-1))' - (Y' * Q) * B- t'*B);
         
         Q = [Q, Qi];
         B = [B; Bi];
-                
-        temp = abs(E- norm(Bi, 'fro')^2);
+        r = r + b;
+        
+        temp = E- norm(Bi, 'fro')^2;
         
         if temp< threshold,     % for precise rank determination 
             for j=1:b,
@@ -56,7 +60,6 @@ function [Q, B, k] = randQB_FP_auto(A, relerr, b, P)
             break;
         end
     end
-    
     if ~flag,
         fprintf('E = %f. Fail to converge within maxiter!\n', sqrt(E/E0));
     end
