@@ -22,7 +22,7 @@ tic; [L, U, k]= PowerLU_eb(M2,1e-4, 10, 4); toc
 k
 tic; [L, U, k]= PowerLU_eb(M2,1e-5, 10, 4); toc
 k
-tic; [L, U, k]= PowerLU_eb(M3,1e-2, 40, 4); toc
+tic; [L, U, k]= PowerLU_eb(M3,1e-2, 10, 4); toc
 k
 tic; [L, U, k]= PowerLU_eb(M3,1.5e-3, 40, 4); toc
 k
