@@ -40,12 +40,12 @@ tic; [Q, B, k]= randQB_FP_auto(M3, 1.5e-3, 10, 1); toc
 k
 
 %SVD
-k = truncated_svd(A, 1e-2)
-k = truncated_svd(A, 1e-4)
-k = truncated_svd(A, 1e-4)
-k = truncated_svd(A, 1e-5)
-k = truncated_svd(A, 1e-2)
-k = truncated_svd(A, 1.5e-3)
+k = truncated_svd(M1, 1e-2)
+k = truncated_svd(M1, 1e-4)
+k = truncated_svd(M2, 1e-4)
+k = truncated_svd(M2, 1e-5)
+k = truncated_svd(M3, 1e-2)
+k = truncated_svd(M3, 1.5e-3)
 
 %SVD
 %{

@@ -67,8 +67,3 @@ k
 %}
 
 
-BB = L * U;
-CC = reshape(BB', [4752,3168, 3]);
-
-CC = permute(CC, [2,1,3]);
-figure, imshow(CC)
