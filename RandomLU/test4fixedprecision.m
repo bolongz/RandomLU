@@ -1,15 +1,17 @@
-n= 4000;
-M1= genTestMatrix(n, n, 1);
-M2= genTestMatrix(n, n, 2);
+n= 8000;
+%M1= genTestMatrix(n, n, 1);
+%M2= genTestMatrix(n, n, 2);
 M3= genTestMatrix(n, n, 3);
 
 % test Adpative Range Finder.
- [Q, B, k]= AdpRangeFinder(M1, 1e-2); k
+ 
+[Q, B, k]= AdpRangeFinder(M1, 1e-2); k
  [Q, B, k]= AdpRangeFinder(M1, 1e-4); k
  [Q, B, k]= AdpRangeFinder(M2, 1e-4); k
  [Q, B, k]= AdpRangeFinder(M2, 1e-5); k
+
  [Q, B, k]= AdpRangeFinder(M3, 1e-2); k
- [Q, B, k]= AdpRangeFinder(M3, 1.5e-3, 3950); k
+ [Q, B, k]= AdpRangeFinder(M3, 1.5e-3, 7950); k
 
 % test PowerLU_eb
 tic; [L, U, k]= PowerLU_eb(M1,1e-2, 10, 4); toc
@@ -20,9 +22,9 @@ tic; [L, U, k]= PowerLU_eb(M2,1e-4, 10, 4); toc
 k
 tic; [L, U, k]= PowerLU_eb(M2,1e-5, 10, 4); toc
 k
-tic; [L, U, k]= PowerLU_eb(M3,1e-2, 10, 4); toc
+tic; [L, U, k]= PowerLU_eb(M3,1e-2, 40, 4); toc
 k
-tic; [L, U, k]= PowerLU_eb(M3,1.5e-3, 10, 4); toc
+tic; [L, U, k]= PowerLU_eb(M3,1.5e-3, 40, 4); toc
 k
 
 % test randQB_FP
@@ -36,7 +38,7 @@ tic; [Q, B, k]= randQB_FP_auto(M2, 1e-5, 10, 1); toc
 k
 tic; [Q, B, k]= randQB_FP_auto(M3, 1e-2, 10, 1); toc
 k
-tic; [Q, B, k]= randQB_FP_auto(M3, 1.5e-3, 10, 1); toc
+tic; [Q, B, k]= randQB_FP_auto(M3, 1.5e-3, 40, 1); toc
 k
 
 %SVD

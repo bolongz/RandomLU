@@ -6,7 +6,7 @@ A = randn(5000, 5000);
 %PowerLU, PowerLU_b, PowerLU_eb, RandLU, RandSVD, RandQB_FP, RandQB_b
 
 X = [100:100:1000];
-%{
+
 dim = size(X,2);
 
 powerlu_times = zeros(dim,1);
@@ -66,21 +66,21 @@ for i = 1:1:dim
         [~, ~] = randQB_FP_k(A, dimm, 20, 1);
         randQB_FP_times2(i) = randQB_FP_times2(i) + toc - t99;
         t100 = toc;
-        [~, ~] = PowerLU_eb_k(A, dimm,20, 2);
+        [~, ~] = PowerLU_eb_k(A, dimm, dimm,20, 2);
         powerlu_eb_times(i) = powerlu_eb_times(i) + toc - t100;
         t101 = toc;
-        [~, ~] = PowerLU_eb_k(A, dimm, 20, 4);
+        [~, ~] = PowerLU_eb_k(A, dimm, dimm, 20, 4);
         powerlu_eb_times2(i) = powerlu_eb_times2(i) + toc - t101;
         
         t102 = toc;
-        [~, ~] = PowerLU_b_k(A, dimm,20, 2);
+        [~, ~] = PowerLU_b_k(A,dimm, dimm,20, 2);
         powerlu_b_times(i) = powerlu_b_times(i) + toc - t102;
         t103 = toc;
-        [~, ~] = PowerLU_b_k(A, dimm, 20, 4);
+        [~, ~] = PowerLU_b_k(A, dimm, dimm, 20, 4);
         powerlu_b_times2(i) = powerlu_b_times2(i) + toc - t103;
     end
 end
-%}
+
 
 subplot(1,2,1);
 plot(X, powerlu_times/20, '-gx' , X, randlu_times/20, '-c*' ,X, randsvd_times/20, '-bs',...
