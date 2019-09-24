@@ -1,10 +1,10 @@
 %A = gen_rand_mat_s_decay(500,400);
 %A = gen_rand_mat_slow_decay(500,400);
 %A = gen_rand_mat_exp_decay(500,400,7);%
-[A,~] = genTestMatrix(300, 300, 1); %slow decay 
+[A,~] = genTestMatrix(1000, 1000, 3); %slow decay 
 %[A,~] = genTestMatrix(500, 500, 2); %decay rapidly
 %[A,~] = genTestMatrix(2000, 2000, 2); %S-shape
-kk = 200;
+kk = 100;
 ss = 10;
 step = 10;
 X = [ss:step:kk];
