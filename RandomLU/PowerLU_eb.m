@@ -8,6 +8,8 @@ maxcol= b*maxiter;
 
 L =zeros(m,maxcol);
 U = zeros(maxcol,n);
+%L = [];
+%U = [];
 
 flag = false;
 E = norm(A, 'fro')^2;
