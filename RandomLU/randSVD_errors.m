@@ -12,7 +12,7 @@ function errs = randSVD_errors(A, ss, k, b,p, mode)
     times = [];
     
     for i = ss:b:k
-        [U,S,V] = basicQB_svd(A, i + 3, i, p);
+        [U,S,V] = basicQB_svd(A, i, i, p);
         if strcmp(mode,'spec')
             er = norm(A-U*S*V')/eigs(1); 
             errs = [errs; er];

@@ -172,7 +172,7 @@ L = legend([h1(1), h2(1), h3(1), h4(1), h5(1), h6(1), h7(1), h8(1), h9(1) ...
 'PowerLU\_eb, v = 2', 'PowerLU\_eb, v = 4', 'PowerLU\_eb, v = 6');
 L.FontSize = 20;
 %[h1(1), h2(1), h3(1), h4(1), h5(1), h6(1)]
-xlabel('k', 'FontSize',15,'FontWeight','bold');
+xlabel('l', 'FontSize',15,'FontWeight','bold');
 %ylabel('Spectral Norm Error', 'FontSize',15,'FontWeight','bold');
 ylabel('Forbenius Error', 'FontSize',15,'FontWeight','bold');
 
