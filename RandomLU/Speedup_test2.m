@@ -87,7 +87,7 @@ plot(X, powerlu_times/20, '-gx' , X, randlu_times/20, '-c*' ,X, randsvd_times/20
 X, randQB_b_times/20, '-c^' , X, randQB_FP_times/20, '-b<', ...
 X, powerlu_b_times/20, '-kd' , X, powerlu_eb_times/20, '-ro',...
 'LineWidth', 1.5, 'MarkerSize', 8);
-L = legend( 'PowerLU', 'RandLU', 'RandSVD', 'RandQB\_b', 'RandQB\_FP', 'PowrLU\_b', 'PowerLU\_eb');
+L = legend( 'PowerLU', 'RandLU', 'RandSVD', 'RandQB\_b', 'RandQB\_FP', 'PowerLU\_b', 'PowerLU\_eb');
 L.FontSize = 20;
 xlabel('n', 'FontSize',15,'FontWeight','bold');
 ylabel('Computational Time', 'FontSize',15,'FontWeight','bold');
@@ -97,7 +97,7 @@ plot(X, powerlu_times2/20, '-gx' , X, randlu_times2/20, '-c*' ,X, randsvd_times2
 X, randQB_b_times2/20, '-c^' , X, randQB_FP_times2/20, '-b<', ...
 X, powerlu_b_times2/20, '-kd' , X, powerlu_eb_times2/20, '-ro',...
 'LineWidth', 1.5, 'MarkerSize', 8);
-L = legend( 'PowerLU', 'RandLU', 'RandSVD', 'RandQB\_b', 'RandQB\_FP', 'PowrLU\_b', 'PowerLU\_eb');
+L = legend( 'PowerLU', 'RandLU', 'RandSVD', 'RandQB\_b', 'RandQB\_FP', 'PowerLU\_b', 'PowerLU\_eb');
 L.FontSize = 20;
 xlabel('n', 'FontSize',15,'FontWeight','bold');
 ylabel('Computational Time', 'FontSize',15,'FontWeight','bold');
