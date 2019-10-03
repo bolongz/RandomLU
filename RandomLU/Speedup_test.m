@@ -30,17 +30,10 @@ for i = 1:1:dim
         [ ~, ~, ~, ~] = PowerLU(A,dimm, dimm,2);
         t1 = toc;
         powerlu_times(i) = powerlu_times(i) + t1;
-        t11 = toc;
-        [~, ~, ~, ~] = randomizedLU(A,dimm, dimm,0,'regular');
-        t2 = toc;
-        randlu_times(i) = randlu_times(i) + t2- t11;
         t22 = toc;
         [ ~, ~, ~, ~] = PowerLU(A,dimm, dimm,4);
-        t3 = toc;
-        powerlu_times2(i) = powerlu_times2(i) + t3-t22;
-        t33 = toc;
-        [~, ~, ~, ~] = randomizedLU(A,dimm, dimm,1,'regular');
-        randlu_times2(i) = randlu_times2(i) + toc - t33;
+        %t3 = toc;
+        powerlu_times2(i) = powerlu_times2(i) + toc-t22;
         t44 = toc;
         [~, ~, ~] = basicQB_svd(A, dimm, dimm,0);
         randsvd_times(i) = randsvd_times(i) + toc - t44;
@@ -49,12 +42,6 @@ for i = 1:1:dim
         randsvd_times2(i) = randsvd_times2(i) + toc - t55;
         
       
-        t66 = toc;
-        [~, ~] = randQB_b_k(A, dimm,20, 0);
-        randQB_b_times(i) = randQB_b_times(i) + toc - t66;
-        t77 = toc;
-        [~, ~] = randQB_b_k(A, dimm, 20, 1);
-        randQB_b_times2(i) = randQB_b_times2(i) + toc - t77;
         t88 = toc;
         [~, ~] = randQB_FP_k(A, dimm,20, 0);
         randQB_FP_times(i) = randQB_FP_times(i) + toc - t88;
@@ -68,12 +55,30 @@ for i = 1:1:dim
         [~, ~] = PowerLU_eb_k(A, dimm, dimm, 20, 4);
         powerlu_eb_times2(i) = powerlu_eb_times2(i) + toc - t101;
         
+        if X(i) < 30000;
         t102 = toc;
         [~, ~] = PowerLU_b_k(A, dimm,dimm, 20, 2);
         powerlu_b_times(i) = powerlu_b_times(i) + toc - t102;
         t103 = toc;
         [~, ~] = PowerLU_b_k(A, dimm, dimm, 20, 4);
         powerlu_b_times2(i) = powerlu_b_times2(i) + toc - t103;
+        
+        t11 = toc;
+        [~, ~, ~, ~] = randomizedLU(A,dimm, dimm,0,'regular');
+        %t2 = toc;
+        randlu_times(i) = randlu_times(i) + toc- t11;
+        t33 = toc;
+        [~, ~, ~, ~] = randomizedLU(A,dimm, dimm,1,'regular');
+        randlu_times2(i) = randlu_times2(i) + toc - t33;
+        
+         t66 = toc;
+        [~, ~] = randQB_b_k(A, dimm,20, 0);
+        randQB_b_times(i) = randQB_b_times(i) + toc - t66;
+        t77 = toc;
+        [~, ~] = randQB_b_k(A, dimm, 20, 1);
+        randQB_b_times2(i) = randQB_b_times2(i) + toc - t77;
+        end
+        
     end
 end
 
