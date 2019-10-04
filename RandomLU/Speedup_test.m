@@ -1,9 +1,11 @@
 %A = gen_rand_mat_s_decay(1000,800, 7);
 %PowerLU, PowerLU_b, PowerLU_eb, RandLU, RandSVD, RandQB_FP, RandQB_b
 
-X = [3000:200:5000];
+%X = [500:100:1000];
+X = [2000, 4000, 8000, 16000, 24000, 32000];
 dim = size(X,2);
 
+LIMIT = 30000;
 powerlu_times = zeros(dim,1);
 randlu_times = zeros(dim,1);
 powerlu_times2 = zeros(dim,1);
@@ -55,7 +57,7 @@ for i = 1:1:dim
         [~, ~] = PowerLU_eb_k(A, dimm, dimm, 20, 4);
         powerlu_eb_times2(i) = powerlu_eb_times2(i) + toc - t101;
         
-        if X(i) < 30000;
+        if X(i) < LIMIT;
         t102 = toc;
         [~, ~] = PowerLU_b_k(A, dimm,dimm, 20, 2);
         powerlu_b_times(i) = powerlu_b_times(i) + toc - t102;
@@ -84,20 +86,48 @@ end
 
 
 subplot(1,2,1);
-semilogy(X, powerlu_times/20, '-gx' , X, randlu_times/20, '-c*' ,X, randsvd_times/20, '-bs',...
-X, randQB_b_times/20, '-c^' , X, randQB_FP_times/20, '-b<', ...
-X, powerlu_b_times/20, '-kd' , X, powerlu_eb_times/20, '-ro',...
-'LineWidth', 1.5, 'MarkerSize', 8);
+
+if X(length(X)) > LIMIT
+    semilogy(X, powerlu_times/20, '-gx',X, randsvd_times/20, '-bs',...
+     X, randQB_FP_times/20, '-b<', ...
+      X, powerlu_eb_times/20, '-ro',...
+    'LineWidth', 1.5, 'MarkerSize', 8);
+    hold on
+    semilogy(X(1:(length(X)-1)), randlu_times(1:(length(X)-1))/20, 'z-c*' ,...
+    X(1:(length(X)-1)), randQB_b_times(1:(length(X)-1))/20, '-c^' , ...
+    X(1:(length(X)-1)), powerlu_b_times(1:(length(X)-1))/20, '-kd' ,...
+    'LineWidth', 1.5, 'MarkerSize', 8);
+else
+    semilogy(X, powerlu_times/20, '-gx' , X, randlu_times/20, '-c*' ,X, randsvd_times/20, '-bs',...
+    X, randQB_b_times/20, '-c^' , X, randQB_FP_times/20, '-b<', ...
+    X, powerlu_b_times/20, '-kd' , X, powerlu_eb_times/20, '-ro',...
+    'LineWidth', 1.5, 'MarkerSize', 8);
+end
 L = legend( 'PowerLU', 'RandLU', 'RandSVD', 'RandQB\_b', 'RandQB\_FP', 'PowerLU\_b', 'PowerLU\_eb');
 L.FontSize = 20;
 xlabel('n', 'FontSize',15,'FontWeight','bold');
 ylabel('Computational Time', 'FontSize',15,'FontWeight','bold');
 
 subplot(1,2,2);
-semilogy(X, powerlu_times2/20, '-gx' , X, randlu_times2/20, '-c*' ,X, randsvd_times2/20, '-bs',...
+
+if X(length(X)) > 30000
+    semilogy(X, powerlu_times2/20, '-gx',X, randsvd_times2/20, '-bs',...
+     X, randQB_FP_times2/20, '-b<', ...
+      X, powerlu_eb_times2/20, '-ro',...
+    'LineWidth', 1.5, 'MarkerSize', 8);
+    hold on
+    semilogy(X(1:(length(X)-1)), randlu_times2(1:(length(X)-1))/20, 'z-c*' ,...
+    X(1:(length(X)-1)), randQB_b_times2(1:(length(X)-1))/20, '-c^' , ...
+    X(1:(length(X)-1)), powerlu_b_times2(1:(length(X)-1))/20, '-kd' ,...
+    'LineWidth', 1.5, 'MarkerSize', 8);
+else
+   semilogy(X, powerlu_times2/20, '-gx' , X, randlu_times2/20, '-c*' ,X, randsvd_times2/20, '-bs',...
 X, randQB_b_times2/20, '-c^' , X, randQB_FP_times2/20, '-b<', ...
 X, powerlu_b_times2/20, '-kd' , X, powerlu_eb_times2/20, '-ro',...
 'LineWidth', 1.5, 'MarkerSize', 8);
+
+end
+
 L = legend( 'PowerLU', 'RandLU', 'RandSVD', 'RandQB\_b', 'RandQB\_FP', 'PowerLU\_b', 'PowerLU\_eb');
 L.FontSize = 20;
 xlabel('n', 'FontSize',15,'FontWeight','bold');
