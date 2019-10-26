@@ -2,7 +2,7 @@
 %PowerLU, PowerLU_b, PowerLU_eb, RandLU, RandSVD, RandQB_FP, RandQB_b
 
 %X = [500:100:1000];
-%X = [2000, 4000, 8000, 16000, 24000, 32000];
+X = [2000, 4000, 8000, 16000, 24000, 32000];
 dim = size(X,2);
 
 LIMIT = 30000;
