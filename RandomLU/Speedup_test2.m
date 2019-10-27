@@ -1,5 +1,5 @@
 %A = gen_rand_mat_s_decay(1000,800, 7);
-A = randn(5000, 5000);
+A = randn(8000, 8000);
 
 
 %A = gen_rand_mat_s_decay(1000,800, 7);
