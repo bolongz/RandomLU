@@ -4,7 +4,7 @@
 %[A,~] = genTestMatrix(2000, 2000, 1); %slow decay 
 [A,~] = genTestMatrix(500, 500, 1); %decay rapidly
 %[A,~] = genTestMatrix(500, 500, 3); %S-shape
-kk = 100;
+kk = 200;
 ss = 10;
 step = 10;
 X = [ss:step:kk];
@@ -37,17 +37,17 @@ svd_errs = SVD_errors(A, ss, kk, step,mode);
 powerr = [20; powerr];
 %powerr2 = [20; powerr2];
 powerrsp = [20; powerrsp];
-singlepass2011err = [20; singlepass2011err];
+singlepass2011err = [20; singlepass2011err];mat
 randqbsinglepasserr = [20; randqbsinglepasserr];
 svd_errs = [1; svd_errs];
 X = [0, X];
 
 %profile report
-subplot(1,2,1)
+subplot(1,2,1)mat
 h1 = semilogy(X, svd_errs, '-r','LineWidth', 1.5, 'MarkerSize', 8);
 hold on
-h2 = semilogy(X, powerr/20, 'bo', 'LineWidth', 1.5, 'MarkerSize', 8);
-%h3 = semilogy(X, powerr2/20, 'kp', 'LineWidth', 1.5, 'MarkerSize', 8);
+h2 = semilogy(X, powerr/20, 'bo'mat, 'LineWidth', 1.5, 'MarkerSize', 8);
+%h3 = semilogy(X, powerr2/20, 'kp', 'LineWidth', 1mat.5, 'MarkerSize', 8);
 h3 = semilogy(X, powerrsp/20, 'cd', 'LineWidth', 1.5, 'MarkerSize', 8);
 h4 = semilogy(X, singlepass2011err/20, 'g^', 'LineWidth', 1.5, 'MarkerSize', 8);
 h5 = semilogy(X, randqbsinglepasserr/20, 'b>', 'LineWidth', 1.5, 'MarkerSize', 8);

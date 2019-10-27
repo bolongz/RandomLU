@@ -1,7 +1,7 @@
 %A = gen_rand_mat_s_decay(500,400);
 %A = gen_rand_mat_slow_decay(500,400);
 %A = gen_rand_mat_exp_decay(500,400,7);%
-[A,~] = genTestMatrix(1000, 1000, 3); %slow decay 
+[A,~] = genTestMatrix(2000, 2000, 3); %slow decay 
 %[A,~] = genTestMatrix(500, 500, 2); %decay rapidly
 %[A,~] = genTestMatrix(2000, 2000, 2); %S-shape
 kk = 100;
@@ -121,7 +121,6 @@ rlu_err2 = [20; rlu_err2];
 rlu_no_err = [20; rlu_no_err];
 rlu_no_err1 = [20; rlu_no_err1];
 rlu_no_err2 = [20; rlu_no_err2];
-
 
 rsvd_err = [20; rsvd_err];
 rsvd_err1 = [20; rsvd_err1];
