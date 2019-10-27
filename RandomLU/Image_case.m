@@ -74,7 +74,18 @@ err2 = (1e-5)^2 * E2;
 for i = 1:1:n-1
     sum2 = 0;
     for j = i+1:1:n
-        sum2 = sum2+S2(j,j)^2;
+        sum2 = sum2+S2(j,j)^2;Elapsed time is 2.421500 seconds.
+
+k =
+
+    66
+
+Elapsed time is 2.433959 seconds.
+
+k =
+
+    82
+
         if sum2 < err2
             i
             flag2 = true;
@@ -97,7 +108,18 @@ toc
 flag = true;
 flag2 = false;
 E3 = norm(M3, 'fro')^2;
-err1 = (1e-2)^2 * E3;
+err1 = (1e-2)^2 * E3;Elapsed time is 2.421500 seconds.
+
+k =
+
+    66
+
+Elapsed time is 2.433959 seconds.
+
+k =
+
+    82
+
 err2 = (1.5e-3)^2 * E3;
 
 for i = 1:1:n-1
@@ -135,7 +157,18 @@ k
 tic; [Q, B, k]= randQB_FP_auto(A, 0.1, 10, 1); toc
 k
 tic; [Q, B, k]= randQB_FP_auto(A, 0.1, 20, 1); toc
-k
+kElapsed time is 2.421500 seconds.
+
+k =
+
+    66
+
+Elapsed time is 2.433959 seconds.
+
+k =
+
+    82
+
 tic; [Q, B, k]= randQB_FP_auto(A, 0.1, 10, 2); toc
 k
 tic; [Q, B, k]= randQB_FP_auto(A, 0.1, 20, 2); toc

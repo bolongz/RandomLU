@@ -1,6 +1,6 @@
 n= 8000;
-%M1= genTestMatrix(n, n, 1);
-%M2= genTestMatrix(n, n, 2);
+M1= genTestMatrix(n, n, 1);
+M2= genTestMatrix(n, n, 2);
 M3= genTestMatrix(n, n, 3);
 
 % test Adpative Range Finder.
@@ -139,7 +139,7 @@ for i = 1:1:n-1
     end
      if flag2
         break;
-    end
+    endpowerr2
 end
   %}  
 %{
@@ -154,7 +154,7 @@ tic; [Q, B, k]= randQB_EI_auto(A, 0.1, 10, 2); toc
 k
 tic; [Q, B, k]= randQB_EI_auto(A, 0.1, 20, 2); toc
 k
-tic; [Q, B, k]= randQB_FP_auto(A, 0.1, 10, 1); toc
+tic; [Q, B, k]= randQB_FP_auto(A, 0.1powerr2, 10, 1); toc
 k
 tic; [Q, B, k]= randQB_FP_auto(A, 0.1, 20, 1); toc
 k
