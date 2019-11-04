@@ -60,20 +60,22 @@ if q>0
     end
 end
 %}
-
+[Ly,~, Py]  = lu(Y, 'vector');  
 if q>0
+    Ly = Ly( TransposePermutation(Py),:);
     for ii = 1:q
-        [Y, ~] = lu(A' * Y);
+        [Ly, ~] = lu(A' * Ly);
         if ii == q
             %[Y, ~] = qr(A * Y, 0); 
-            [Ly,~, Py]  = lu(A * Y, 'vector');  
+            [Ly,~, Py]  = lu(A * Ly, 'vector');  
         else
-            [Y, ~] = lu(A * Y);
+            [Ly, ~] = lu(A * Ly);
         end
     end
-else
-    [Ly,~, Py]  = lu(Y, 'vector');
 end
+%else
+%    [Ly,~, P1]  = lu(Y, 'vector');
+%end
 
 % [Ly, ~, Py] = lu(Y,'vector');
 if l>k
