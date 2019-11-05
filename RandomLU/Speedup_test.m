@@ -1,8 +1,8 @@
 %A = gen_rand_mat_s_decay(1000,800, 7);
 %PowerLU, PowerLU_b, PowerLU_eb, RandLU, RandSVD, RandQB_FP, RandQB_b
 
-X = [500:200:3000];
-%X = [2000, 4000, 8000, 16000, 24000, 32000];
+%X = [500:500:5000];
+X = [2000, 4000, 8000, 16000, 24000, 32000];
 dim = size(X,2);
 
 LIMIT = 30000;
