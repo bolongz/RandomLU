@@ -24,7 +24,7 @@ if mod(q, 2) == 0
     end
 else
 
-    Omega = rand(n,maxcol);
+    VV = rand(n,maxcol);
     %if q > 2
     %    [VV, ~] =  lu(Omega);
     %else
