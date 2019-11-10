@@ -16,7 +16,7 @@ if mod(q, 2) == 0
     end
 else
 
-    Omega = rand(n,l);
+    VV = rand(n,l);
     %if q > 2
     %    [VV, ~] =  lu(Omega);
     %else

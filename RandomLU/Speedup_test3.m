@@ -1,5 +1,5 @@
 %A = gen_rand_mat_s_decay(1000,800, 7);
-A = randn(8000, 8000);
+A = randn(2000, 2000);
 
 
 %A = gen_rand_mat_s_decay(1000,800, 7);
@@ -58,8 +58,7 @@ plot(X, randQB_FP_timess2/D, '-b<', ...
 X, powerlu_eb_timess2/D, '-ro',...
 X, powerlu_eb_timess3/D, '-gd',...
 'LineWidth', 1.5, 'MarkerSize', 8);
-L = legend('RandQB\_FP', 'PowerLU\_eb', 'PowerLU\_eb:odd');L = legend( 'PowerLU', 'RandLU', 'RandSVD', 'RandQB\_b', 'RandQB\_FP', 'PowerLU\_b', 'PowerLU\_eb');
-
+L = legend('RandQB\_FP', 'PowerLU\_eb', 'PowerLU\_eb:odd');
 L.FontSize = 20;
 xlabel('n', 'FontSize',15,'FontWeight','bold');
 ylabel('Computational Time', 'FontSize',15,'FontWeight','bold');
