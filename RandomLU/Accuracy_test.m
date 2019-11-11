@@ -34,7 +34,9 @@ powerlu_b_err4 = zeros(dim,1);
 powerlu_b_err6 = zeros(dim,1);
 
 powerlu_eb_err2 = zeros(dim,1);
+powerlu_eb_err3 = zeros(dim,1);
 powerlu_eb_err4 = zeros(dim,1);
+powerlu_eb_err5 = zeros(dim,1);
 powerlu_eb_err6 = zeros(dim,1);
 
 svderr = zeros(dim,1);
@@ -93,9 +95,15 @@ for i = 1:20
     powerlu_errs = PowerLU_eb_errors(A,ss,kk,step,2, mode);
     powerlu_eb_err2 = powerlu_eb_err2 + powerlu_errs;
     
+    powerlu_errs = PowerLU_eb_errors(A,ss,kk,step,3, mode);
+    powerlu_eb_err3 = powerlu_eb_err3 + powerlu_errs;
+    
     powerlu_errs = PowerLU_eb_errors(A,ss,kk,step,4, mode);
     powerlu_eb_err4 = powerlu_eb_err4 + powerlu_errs;
     
+    powerlu_errs = PowerLU_eb_errors(A,ss,kk,step,5, mode);
+    powerlu_eb_err5 = powerlu_eb_err5 + powerlu_errs;    
+
     powerlu_errs = PowerLU_eb_errors(A,ss,kk,step,6, mode);
     powerlu_eb_err6 = powerlu_eb_err6 + powerlu_errs;
     
@@ -111,7 +119,10 @@ powerlu_b_err4 = [20; powerlu_b_err4];
 powerlu_b_err6 = [20; powerlu_b_err6];
 
 powerlu_eb_err2 = [20; powerlu_eb_err2];
+powerlu_eb_err3 = [20; powerlu_eb_err3];
 powerlu_eb_err4 = [20; powerlu_eb_err4];
+powerlu_eb_err5 = [20; powerlu_eb_err5];
+
 powerlu_eb_err6 = [20; powerlu_eb_err6];
 
 rlu_err = [20; rlu_err];
@@ -158,7 +169,6 @@ h16 = semilogy(X, powerlu_b_err6/20, 'b^','LineWidth', 1.5, 'MarkerSize', 8);
 h17 = semilogy(X, powerlu_eb_err2/20, 'r+', 'LineWidth', 1.5, 'MarkerSize', 8);
 h18 = semilogy(X, powerlu_eb_err4/20, 'ks', 'LineWidth', 1.5, 'MarkerSize', 8);
 h19 = semilogy(X, powerlu_eb_err6/20, 'bp','LineWidth', 1.5, 'MarkerSize', 8);
-
 hold off
 L = legend([h1(1), h2(1), h3(1), h4(1), h5(1), h6(1), h7(1), h8(1), h9(1) ...
     h10(1), h11(1), h12(1), h13(1), h14(1), h15(1), h16(1), h17(1), h18(1), h19(1)],'SVD',...

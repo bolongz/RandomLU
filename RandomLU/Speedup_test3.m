@@ -1,15 +1,15 @@
 %A = gen_rand_mat_s_decay(1000,800, 7);
-A = randn(2000, 2000);
+A = randn(8000, 8000);
 
 
 %A = gen_rand_mat_s_decay(1000,800, 7);
 %PowerLU, PowerLU_b, PowerLU_eb, RandLU, RandSVD, RandQB_FP, RandQB_b
 
-X = [100:100:1000];
+X = [500:100:1000];
 
 dim = size(X,2);
 
-D = 5;
+D = 10;
 
 powerlu_eb_timess = zeros(dim,1);
 powerlu_eb_timess2 = zeros(dim,1);
@@ -23,22 +23,30 @@ for i = 1:1:dim
     dimm = dimm + 100;
     %A = randn(X(i), X(i));
     for ii = 1:1:D,
-        t88 = toc;
+        tic;
         [~, ~] = randQB_FP_k(A, dimm,20, 0);
-        randQB_FP_timess(i) = randQB_FP_timess(i) + toc - t88;
-        t99 = toc;
+        r88 = toc;
+        randQB_FP_timess(i) = randQB_FP_timess(i) +r88;
+        
+        tic;
         [~, ~] = randQB_FP_k(A, dimm, 20, 1);
-        randQB_FP_timess2(i) = randQB_FP_timess2(i) + toc - t99;
-        t100 = toc;
+        r99 = toc;
+        randQB_FP_timess2(i) = randQB_FP_timess2(i) + r99;
+        
+        tic;
         [~, ~] = PowerLU_eb_k(A, dimm, dimm,20, 2);
-        powerlu_eb_timess(i) = powerlu_eb_timess(i) + toc - t100;
-        t103 = toc;
-        [~, ~] = PowerLU_eb_k(A, dimm, dimm,20, 3);
-        powerlu_eb_timess3(i) = powerlu_eb_timess3(i) + toc - t103;
-        t101 = toc;
+        r100 = toc;
+        powerlu_eb_timess(i) = powerlu_eb_timess(i) + r100;
+        
+        %tic;
+        %[~, ~] = PowerLU_eb_k(A, dimm, dimm,20, 3);
+        %r103 = toc;
+        %powerlu_eb_timess3(i) = powerlu_eb_timess3(i) + r103;
+        
+        tic;
         [~, ~] = PowerLU_eb_k(A, dimm, dimm, 20, 4);
-        powerlu_eb_timess2(i) = powerlu_eb_timess2(i) + toc - t101;
-    ;
+        r101 = toc; 
+        powerlu_eb_timess2(i) = powerlu_eb_timess2(i) + r101;
     end
 end
 
