@@ -26,11 +26,11 @@ else
 end
 v = floor((q-1)/2);
 for ii = 1:v
-    %[VV, ~] = lu(A * VV);
+    [VV, ~] = lu(A * VV);
     if ii == v
-        [VV, ~] = qr(A' * (A *VV), 0);  
+        [VV, ~] = qr(A' * VV, 0);  
     else
-        [VV, ~] = lu(A' * (A * VV));
+        [VV, ~] = lu(A' * VV);
     end
 end    
 %G = A * VV;
@@ -40,7 +40,7 @@ end
 %E = 0;
 %E = norm(A, 'fro');
 %maxiter = 500;
-%ßacc= (norm(A, 'fro')^2);%/(10*sqrt(2/pi))
+%acc= (norm(A, 'fro')^2);%/(10*sqrt(2/pi))
 %{
 for i = 1:1: k/b
   
@@ -53,7 +53,7 @@ for i = 1:1: k/b
     L1_inv = Fastpinv(L1, 'regular');
     L_inv = [L_inv; L1_inv];
     
-    B = L1_inv * A;
+    B = L1_inv * A;0000000000000000000000000000000000000000
     L= [L, L1];
     U= [U; B];
     A = A - L1 * B;

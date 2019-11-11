@@ -16,20 +16,15 @@ if mod(q, 2) == 0
     end
 else
     VV = rand(n,l);
-    %if q > 2
-    %    [VV, ~] =  lu(Omega);
-    %else
-    %    [VV, ~] = qr(Omega, 0);
-    %end
     
 end
 v = floor((q-1)/2);
 for ii = 1:v
-    %[VV, ~] = lu(A * VV);
+    [VV, ~] = lu(A * VV);
     if ii == v
-        [VV, ~] = qr(A' * (A *VV), 0);  
+        [VV, ~] = qr(A' * VV, 0);  
     else
-        [VV, ~] = lu(A' * (A * VV));
+        [VV, ~] = lu(A' * VV);
     end
 end
 %{
