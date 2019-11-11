@@ -42,15 +42,18 @@ for ii = 1:v
     end
 end    
 G = A * VV;
-
 i = 1;
 k = 0;
 while i * b < maxcol,
-    [L1, U1] = lu(G(:, (i-1) * b + 1 : i*b) - L(:, 1:(i-1) * b) * (U(1:(i-1) * b, :)* VV(:, (i-1) * b + 1 : i*b)));
-    L(:, (i-1) * b + 1: i *b) = L1; 
-    U((i-1) * b + 1: i *b, :) =  U1 * VV(:, (i-1) * b + 1 : i*b)';
+    t1 = (i-1) * b;
+    t2 = t1 + b;
+    GG = G(:, t1 + 1 : t2) - L(:, 1:t1) * (U(1:t1, :)* VV(:, t1 + 1 : t2));
+    [L1, U1] = lu(GG);
+    %[L1, U1] = lu(G(:, t1 + 1 : t2) - L(:, 1:t1) * (U(1:t1, :)* VV(:, t1 + 1 : t2)));
+    L(:, t1 + 1: t2) = L1; 
+    U(t1+ 1: t2, :) =  U1 * VV(:, t1 + 1 : t2)';
             
-    temp = E- norm(L1 * U1, 'fro')^2;
+    temp = E- norm(GG, 'fro')^2;
     
     if temp< acc,     % for precise rank determination 
         for j=1:b,

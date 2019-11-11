@@ -83,10 +83,12 @@ end
 
 
 for i = 1:1: k/b
-    [L1, U1] = lu(A * VV(:, (i-1) * b + 1 : i*b));
-    L(:, (i-1) * b + 1: i *b) = L1; 
-    U((i-1) * b + 1: i *b, :) =  U1 * VV(:, (i-1) * b + 1 : i*b)';
-    A = A -  L(:, (i-1) * b + 1: i *b) * U((i-1) * b + 1: i *b, :);
+    t1 = (i-1) * b;
+    t2 = t1 + b;
+    [L1, U1] = lu(A * VV(:, t1 + 1 : t2));
+    L(:, t1 + 1: t2) = L1; 
+    U(t1+ 1: t2, :) =  U1 * VV(:, t1 + 1 : t2)';
+    A = A -  L(:, t1 + 1: t2) * U(t1 + 1: t2, :);
     E = norm(A, 'fro')^2;
 end
 end

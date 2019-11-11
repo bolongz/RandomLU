@@ -1,11 +1,11 @@
 %A = gen_rand_mat_s_decay(1000,800, 7);
-A = randn(8000, 8000);
+A = randn(5000, 5000);
 
 
 %A = gen_rand_mat_s_decay(1000,800, 7);
 %PowerLU, PowerLU_b, PowerLU_eb, RandLU, RandSVD, RandQB_FP, RandQB_b
 
-X = [100:100:1000];
+X = [100:100:800];
 
 dim = size(X,2);
 
@@ -20,6 +20,7 @@ powerlu_b_times = zeros(dim,1);
 powerlu_b_times2 = zeros(dim,1);
 powerlu_eb_times = zeros(dim,1);
 powerlu_eb_times2 = zeros(dim,1);
+powerlu_eb_times15 = zeros(dim,1);
 
 randQB_b_times = zeros(dim,1);
 randQB_b_times2 = zeros(dim,1);
@@ -35,49 +36,76 @@ for i = 1:1:dim
         [ ~, ~, ~, ~] = PowerLU(A,dimm, dimm,2);
         t1 = toc;
         powerlu_times(i) = powerlu_times(i) + t1;
-        t11 = toc;
+        
+        tic;
         [~, ~, ~, ~] = randomizedLU(A,dimm, dimm,0,'regular');
         t2 = toc;
-        randlu_times(i) = randlu_times(i) + t2- t11;
-        t22 = toc;
+        randlu_times(i) = randlu_times(i) + t2;
+        
+        tic;
         [ ~, ~, ~, ~] = PowerLU(A,dimm, dimm,4);
         t3 = toc;
-        powerlu_times2(i) = powerlu_times2(i) + t3-t22;
-        t33 = toc;
+        powerlu_times2(i) = powerlu_times2(i) + t3;
+        
+        tic;
         [~, ~, ~, ~] = randomizedLU(A,dimm, dimm,1,'regular');
-        randlu_times2(i) = randlu_times2(i) + toc - t33;
-        t44 = toc;
+        t33 = toc;
+        randlu_times2(i) = randlu_times2(i) + t33;
+        
+        tic;
         [~, ~, ~] = basicQB_svd(A, dimm, dimm,0);
-        randsvd_times(i) = randsvd_times(i) + toc - t44;
-        t55 = toc;
+        t44 = toc;
+        randsvd_times(i) = randsvd_times(i) + t44;
+        
+        tic;
         [~, ~, ~] = basicQB_svd(A, dimm, dimm, 1);
-        randsvd_times2(i) = randsvd_times2(i) + toc - t55;
+        t55 =toc;
+        randsvd_times2(i) = randsvd_times2(i) + t55;
         
-        t66 = toc;
+        tic;
         [~, ~] = randQB_b_k(A, dimm,20, 0);
-        randQB_b_times(i) = randQB_b_times(i) + toc - t66;
-        t77 = toc;
-        [~, ~] = randQB_b_k(A, dimm, 20, 1);
-        randQB_b_times2(i) = randQB_b_times2(i) + toc - t77;
-        t88 = toc;
-        [~, ~] = randQB_FP_k(A, dimm,20, 0);
-        randQB_FP_times(i) = randQB_FP_times(i) + toc - t88;
-        t99 = toc;
-        [~, ~] = randQB_FP_k(A, dimm, 20, 1);
-        randQB_FP_times2(i) = randQB_FP_times2(i) + toc - t99;
-        t100 = toc;
-        [~, ~] = PowerLU_eb_k(A, dimm, dimm,20, 2);
-        powerlu_eb_times(i) = powerlu_eb_times(i) + toc - t100;
-        t101 = toc;
-        [~, ~] = PowerLU_eb_k(A, dimm, dimm, 20, 4);
-        powerlu_eb_times2(i) = powerlu_eb_times2(i) + toc - t101;
+        t66 = toc;
+        randQB_b_times(i) = randQB_b_times(i) + t66;
         
-        t102 = toc;
+        tic;
+        [~, ~] = randQB_b_k(A, dimm, 20, 1);
+        t77 = toc;
+        randQB_b_times2(i) = randQB_b_times2(i) + t77;
+        
+        tic;
+        [~, ~] = randQB_FP_k(A, dimm,20, 0);
+        t88 = toc;
+        randQB_FP_times(i) = randQB_FP_times(i) + t88;
+        
+        tic;
+        [~, ~] = randQB_FP_k(A, dimm, 20, 1);
+        t99 = toc;
+        randQB_FP_times2(i) = randQB_FP_times2(i) + t99;
+        
+        tic;
+        [~, ~] = PowerLU_eb_k(A, dimm, dimm,20, 2);
+        t100= toc;
+        powerlu_eb_times(i) = powerlu_eb_times(i) + t100;
+       
+        tic;
+        [~, ~] = PowerLU_eb_k(A, dimm, dimm, 20, 3);
+        t1013 = toc;
+        powerlu_eb_times15(i) = powerlu_eb_times15(i) + t1013;
+       
+        
+        tic;
+        [~, ~] = PowerLU_eb_k(A, dimm, dimm, 20, 4);
+        t101 = toc;
+        powerlu_eb_times2(i) = powerlu_eb_times2(i) + t101;
+        
+        tic;
         [~, ~] = PowerLU_b_k(A,dimm, dimm,20, 2);
-        powerlu_b_times(i) = powerlu_b_times(i) + toc - t102;
-        t103 = toc;
+        t102 = toc;
+        powerlu_b_times(i) = powerlu_b_times(i) + t102;
+        tic;
         [~, ~] = PowerLU_b_k(A, dimm, dimm, 20, 4);
-        powerlu_b_times2(i) = powerlu_b_times2(i) + toc - t103;
+        t103 = toc;
+        powerlu_b_times2(i) = powerlu_b_times2(i) + t103;
     end
 end
 
