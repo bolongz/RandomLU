@@ -1,11 +1,10 @@
 %A = gen_rand_mat_s_decay(1000,800, 7);
-A = randn(5000, 5000);
-
-
+clear;
+A = randn(8000, 8000);
 %A = gen_rand_mat_s_decay(1000,800, 7);
 %PowerLU, PowerLU_b, PowerLU_eb, RandLU, RandSVD, RandQB_FP, RandQB_b
 
-X = [100:100:800];
+X = [100:100:500];
 
 dim = size(X,2);
 
@@ -108,8 +107,8 @@ for i = 1:1:dim
         powerlu_b_times2(i) = powerlu_b_times2(i) + t103;
     end
 end
-
-
+%{
+figure(3);
 subplot(1,2,1);
 plot(X, powerlu_times/20, '-gx' , X, randlu_times/20, '-c*' ,X, randsvd_times/20, '-bs',...
 X, randQB_b_times/20, '-c^' , X, randQB_FP_times/20, '-b<', ...
@@ -186,3 +185,5 @@ L1.FontSize = 20;
 xlabel('n', 'FontSize',15,'FontWeight','bold');
 ylabel('Computational Time', 'FontSize',15,'FontWeight','bold');
 %}
+%}
+save('sp3.mat')

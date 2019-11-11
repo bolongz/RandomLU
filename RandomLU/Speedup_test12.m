@@ -25,8 +25,8 @@ randQB_FP_times = zeros(dim,1);
 randQB_FP_times2 = zeros(dim,1);
 
 for i = 1:1:dim
-    %A = sprand(X(i), X(i), 0.003);
-    A = randn(X(i), X(i));
+    A = sprand(X(i), X(i), 0.003);
+    %A = randn(X(i), X(i));
     for ii = 1:1:20
         dimm = 200;
         tic        
@@ -104,9 +104,8 @@ for i = 1:1:dim
         
     end
 end
-
 %{
-figure(1);
+figure(2);
 subplot(1,2,1);
 
 if X(length(X)) > LIMIT
@@ -168,4 +167,4 @@ end
     xlabel('n', 'FontSize',15,'FontWeight','bold');
     ylabel('Computational Time', 'FontSize',15,'FontWeight','bold');
 %}
-save('sp1.mat');
+save('sp2.mat');

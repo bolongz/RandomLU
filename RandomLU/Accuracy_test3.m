@@ -2,10 +2,10 @@
 %A = gen_rand_mat_slow_decay(500,400);
 %A = gen_rand_mat_exp_decay(500,400,7);%
 clear;
-[A,~] = genTestMatrix(2000, 2000, 1); %slow decay 
+[A,~] = genTestMatrix(2000, 2000, 3); %slow decay 
 %[A,~] = genTestMatrix(500, 500, 3); %decay rapidly
 %[A,~] = genTestMatrix(2000, 2000, 3); %S-shape
-kk = 200;
+kk = 100;
 ss = 10;
 step = 10;
 X = [ss:step:kk];
@@ -144,7 +144,7 @@ X = [0, X];
 %profile report
 %subplot(1,2,1)
 %{
-figure(1);
+figure(3);
 h1 = semilogy(X, svd_errs, '-r','LineWidth', 1.5, 'MarkerSize', 8);
 hold on
 h2 = semilogy(X, rsvd_err/20, '--k', 'LineWidth', 1.5, 'MarkerSize', 8);
@@ -188,7 +188,7 @@ xlabel('l', 'FontSize',15,'FontWeight','bold');
 %ylabel('Spectral Norm Error', 'FontSize',15,'FontWeight','bold');
 ylabel('Forbenius Error', 'FontSize',15,'FontWeight','bold');
 %}
-save('acc1.mat');
+save('acc3.mat');
 
 %{
 
