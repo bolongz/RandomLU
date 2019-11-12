@@ -63,7 +63,7 @@ for i = 1:1:dim
         powerlu_eb_times(i) = powerlu_eb_times(i) + t100;
         
         tic;
-        [~, ~] = PowerLU_eb_k(A, dimm, dimm, 20, 4);
+        [~, ~] = PowerLU_eb_k(A, dimm, dimm, 20, 3);
         t1013 = toc;
         powerlu_eb_times15(i) = powerlu_eb_times15(i) + t1013;
         
@@ -108,7 +108,6 @@ end
 %{
 figure(1);
 subplot(1,2,1);
-
 if X(length(X)) > LIMIT
     semilogy(X, powerlu_times/20, '-gx', 'LineWidth', 1.5, 'MarkerSize', 8);
         hold on
