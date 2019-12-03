@@ -85,11 +85,11 @@ for i = 1:1:dim
             t103 = toc;
             powerlu_b_times2(i) = powerlu_b_times2(i) + t103;
             tic;
-            [~, ~, ~, ~] = randomizedLU(A,dimm, dimm,0,'regular');
+            [~, ~, ~, ~] = randomizedLU(A,dimm, dimm,0);
             t11 = toc;
             randlu_times(i) = randlu_times(i) + t11;
             tic;
-            [~, ~, ~, ~] = randomizedLU(A,dimm, dimm,1,'regular');
+            [~, ~, ~, ~] = randomizedLU(A,dimm, dimm,1);
             t33 = toc;
             randlu_times2(i) = randlu_times2(i) + t33;
             tic;
@@ -167,4 +167,4 @@ end
     xlabel('n', 'FontSize',15,'FontWeight','bold');
     ylabel('Computational Time', 'FontSize',15,'FontWeight','bold');
 %}
-save('sp2.mat');
+save('sp22.mat');

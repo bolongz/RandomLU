@@ -12,7 +12,7 @@ function errs = RandLU_no_errors(A, ss, k, b,p, mode)
     errs = [];
     
     for i = ss:b:k
-        [L, U, p_left, p_right] = randomizedLU_no(A,i,i,p,'regular');
+        [L, U, p_left, p_right] = randomizedLU_no(A,i,i,p);
         L = L( TransposePermutation(p_left),:);
         U = U(:,TransposePermutation(p_right));  
         

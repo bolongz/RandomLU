@@ -37,7 +37,7 @@ for i = 1:1:dim
         powerlu_times(i) = powerlu_times(i) + t1;
         
         tic;
-        [~, ~, ~, ~] = randomizedLU(A,dimm, dimm,0,'regular');
+        [~, ~, ~, ~] = randomizedLU(A,dimm, dimm,0);
         t2 = toc;
         randlu_times(i) = randlu_times(i) + t2;
         
@@ -47,7 +47,7 @@ for i = 1:1:dim
         powerlu_times2(i) = powerlu_times2(i) + t3;
         
         tic;
-        [~, ~, ~, ~] = randomizedLU(A,dimm, dimm,1,'regular');
+        [~, ~, ~, ~] = randomizedLU(A,dimm, dimm,1);
         t33 = toc;
         randlu_times2(i) = randlu_times2(i) + t33;
         
@@ -129,4 +129,4 @@ L.FontSize = 20;
 xlabel('n', 'FontSize',15,'FontWeight','bold');
 ylabel('Computational Time', 'FontSize',15,'FontWeight','bold');
 %}
-save('sp3.mat')
+save('sp33.mat')
