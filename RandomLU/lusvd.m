@@ -1,6 +1,7 @@
 %A = gen_rand_mat_s_decay(1000,800, 7);
 clear;
-[A,~] = genTestMatrix(3000, 3000, 2);%A = gen_rand_mat_s_decay(1000,800, 7);
+A = randn(8000, 8000);
+%[A,~] = genTestMatrix(3000, 3000, 2);%A = gen_rand_mat_s_decay(1000,800, 7);
 %PowerLU, PowerLU_b, PowerLU_eb, RandLU, RandSVD, RandQB_FP, RandQB_b
 
 X = [100:100:1000];
@@ -64,4 +65,4 @@ L.FontSize = 20;
 xlabel('n', 'FontSize',15,'FontWeight','bold');
 ylabel('Computational Time', 'FontSize',15,'FontWeight','bold');
 %}
-save('splusvd.mat')
+save('splusvd8.mat')

@@ -129,4 +129,4 @@ L.FontSize = 20;
 xlabel('n', 'FontSize',15,'FontWeight','bold');
 ylabel('Computational Time', 'FontSize',15,'FontWeight','bold');
 %}
-save('sp333.mat')
+save('sp333n.mat')

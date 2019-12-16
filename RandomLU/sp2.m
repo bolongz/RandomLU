@@ -167,4 +167,4 @@ end
     xlabel('n', 'FontSize',15,'FontWeight','bold');
     ylabel('Computational Time', 'FontSize',15,'FontWeight','bold');
 %}
-save('sp222.mat');
+save('sp222n.mat');
