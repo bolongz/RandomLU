@@ -47,9 +47,18 @@ G = A * VV;
 E = norm(A, 'fro')^2;
 
 
-for i = 1:1: k/b
+ss = floor(k/b);
+t1 = 0;
+t2 = 0;
+for i = 1:1: ss + 1
     t1 = (i-1) * b;
+    if t1 >= k
+        break;
+    end
     t2 = t1 + b;
+    if t2 > k
+        t2 = k;
+    end
     GG = G(:, t1 + 1 : t2) - L(:, 1:t1) * (U(1:t1, :)* VV(:, t1 + 1 : t2));
     [L1, U1] = lu(GG);
     L(:, t1 + 1: t2) = L1; 

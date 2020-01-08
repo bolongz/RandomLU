@@ -11,12 +11,12 @@ for j = 1:n
     b = blocks(j);
     for i=1:20
         tic;
-        [~, ~] = PowerLU_eb_k(M1,200, 200,b,2);
+        [~, ~] = PowerLU_eb_km(M1,200, 200,b,2);
         tt = toc;
         res_200(j) = res_200(j) + tt;
         
         tic;
-        [~, ~] = PowerLU_eb_k(M1,400, 400,b,2);
+        [~, ~] = PowerLU_eb_km(M1,400, 400,b,2);
         tt1 = toc;
         res_400(j) = res_400(j) + tt1;
     end
@@ -29,12 +29,12 @@ for j = 1:n
     b = blocks(j);
     for i=1:20
         tic;
-        [~, ~] = PowerLU_eb_k(M2,200, 200,b,2);
+        [~, ~] = PowerLU_eb_km(M2,200, 200,b,2);
         tt21 = toc;
         res2_200(j) = res2_200(j) + tt21;
         
         tic;
-        [~, ~] = PowerLU_eb_k(M2,400, 400,b,2);
+        [~, ~] = PowerLU_eb_km(M2,400, 400,b,2);
         tt22 = toc;
         res2_400(j) = res2_400(j) + tt22;
     end
@@ -47,12 +47,12 @@ for j = 1:n
     b = blocks(j);
     for i=1:20
         tic;
-        [~, ~] = PowerLU_eb_k(M3,200, 200,b,2);
+        [~, ~] = PowerLU_eb_km(M3,200, 200,b,2);
         tt31 = toc;
         res3_200(j) = res3_200(j) + tt31;
         
         tic;
-        [~, ~] = PowerLU_eb_k(M3,400, 400,b,2);
+        [~, ~] = PowerLU_eb_km(M3,400, 400,b,2);
         tt32 = toc;
         res3_400(j) = res3_400(j) + tt32;
     end
