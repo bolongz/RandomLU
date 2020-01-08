@@ -57,4 +57,4 @@ for j = 1:n
         res3_400(j) = res3_400(j) + tt32;
     end
 end
-    
+save('blocks_CPU.mat') 
