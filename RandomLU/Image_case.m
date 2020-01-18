@@ -159,6 +159,17 @@ k
 tic; [Q, B, k]= randQB_FP_auto(A, 0.1, 20, 1); toc
 kElapsed time is 2.421500 seconds.
 
+Elapsed time is 2.449438 seconds.
+
+k =
+
+    16
+
+Elapsed time is 2.769952 seconds.
+
+k =
+
+   328
 k =
 
     66

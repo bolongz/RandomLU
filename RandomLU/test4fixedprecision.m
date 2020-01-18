@@ -1,11 +1,11 @@
-%{
+
 n= 8000;
 M1= genTestMatrix(n, n, 1);
 M2= genTestMatrix(n, n, 2);
 M3= genTestMatrix(n, n, 3);
-%}
+
 % test Adpative Range Finder.
-%{
+
 [Q, B, k]= AdpRangeFinder(M1, 1e-2); k
  [Q, B, k]= AdpRangeFinder(M1, 1e-4); k
  [Q, B, k]= AdpRangeFinder(M2, 1e-4); k
@@ -13,7 +13,7 @@ M3= genTestMatrix(n, n, 3);
 
  [Q, B, k]= AdpRangeFinder(M3, 1e-2); k
  [Q, B, k]= AdpRangeFinder(M3, 1.5e-3, 7950); k
-%}
+
 % test PowerLU_eb
 tic; [L, U, k]= PowerLU_eb(M1,1e-2, 10, 4); toc
 k
@@ -41,7 +41,7 @@ tic; [Q, B, k]= randQB_FP_auto(M3, 1e-2, 10, 1); toc
 k
 tic; [Q, B, k]= randQB_FP_auto(M3, 1.5e-3, 40, 1); toc
 k
-%{
+
 %SVD
 k = truncated_svd(M1, 1e-2)
 k = truncated_svd(M1, 1e-4)
@@ -49,7 +49,7 @@ k = truncated_svd(M2, 1e-4)
 k = truncated_svd(M2, 1e-5)
 k = truncated_svd(M3, 1e-2)
 k = truncated_svd(M3, 1.5e-3)
-%}
+
 %SVD
 %{
 tic;
@@ -98,7 +98,8 @@ for i = 1:1:n-1
     sum2 = 0;
     for j = i+1:1:n
         sum2 = sum2+S2(j,j)^2;
-        if sum2 < err2
+        if sum2 < err2    %[L1, U1] = lu(G(:, t1 + 1 : t2) - L(:, 1:t1) * (U(1:t1, :)* VV(:, t1 + 1 : t2)));
+
             i
             flag2 = true;
             break; 

@@ -30,10 +30,10 @@ E = norm(A, 'fro')^2;
 for i = 1:1: k/b
     t1 = (i-1) * b;
     t2 = t1 + b;
-    GG = G(:, t1 + 1 : t2); % - L(:, 1:t1) * (U(1:t1, :)* VV(:, t1 + 1 : t2));
-    [L1, U1] = lu(GG);
+    %GG = G(:, t1 + 1 : t2); % - L(:, 1:t1) * (U(1:t1, :)* VV(:, t1 + 1 : t2));
+    [L1, U1] = lu(G(:, t1 + 1 : t2));
     L(:, t1 + 1: t2) = L1; 
     U(t1 + 1: t2, :) =  U1 * VV(:, t1 + 1 : t2)';
-    E = E - norm(GG, 'fro')^2;  
+    E = E - norm(G(:, t1 + 1 : t2), 'fro')^2;  
 end
 end

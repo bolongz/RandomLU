@@ -8,8 +8,6 @@ maxcol= b*maxiter;
 
 L =zeros(m,maxcol);
 U = zeros(maxcol,n);
-%L = [];
-%U = [];
 
 flag = false;
 E = norm(A, 'fro')^2;
@@ -24,12 +22,7 @@ if mod(q, 2) == 0
     end
 else
 
-    VV = rand(n,maxcol);
-    %if q > 2
-    %    [VV, ~] =  lu(Omega);
-    %else
-    %    [VV, ~] = qr(Omega, 0);
-    %end
+    VV = randn(n,maxcol);
     
 end
 v = floor((q-1)/2);
@@ -47,13 +40,12 @@ k = 0;
 while i * b < maxcol,
     t1 = (i-1) * b;
     t2 = t1 + b;
-    GG = G(:, t1 + 1 : t2) - L(:, 1:t1) * (U(1:t1, :)* VV(:, t1 + 1 : t2));
-    [L1, U1] = lu(GG);
-    %[L1, U1] = lu(G(:, t1 + 1 : t2) - L(:, 1:t1) * (U(1:t1, :)* VV(:, t1 + 1 : t2)));
+    %GG = G(:, t1 + 1 : t2); % - L(:, 1:t1) * (U(1:t1, :)* VV(:, t1 + 1 : t2));
+    [L1, U1] = lu(G(:, t1 + 1 : t2));
     L(:, t1 + 1: t2) = L1; 
     U(t1+ 1: t2, :) =  U1 * VV(:, t1 + 1 : t2)';
             
-    temp = E- norm(GG, 'fro')^2;
+    temp = E- norm(G(:, t1 + 1 : t2), 'fro')^2;
     
     if temp< acc,     % for precise rank determination 
         for j=1:b,
