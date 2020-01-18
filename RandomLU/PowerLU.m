@@ -10,12 +10,7 @@ if mod(q, 2) == 0
         [VV, ~] = qr(A' * Omega, 0);
     end
 else
-    Omega = rand(n,l);
-    %if q > 2
-    %    [VV, ~] =  lu(Omega);
-    %else
-    %    [VV, ~] = qr(Omega, 0);
-    %end
+    VV = randn(n,l);
 end
 v = floor((q-1)/2);
 for ii = 1:v

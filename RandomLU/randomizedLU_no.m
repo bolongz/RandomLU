@@ -30,8 +30,8 @@ elseif nargin==6
     density=1;
 end
 
-%pinvmode = 'gauss';
-pinvmode = 'regular';
+pinvmode = 'gauss';
+%pinvmode = 'regular';
 if gpu
     pinvmode = 'gpu';
 end
