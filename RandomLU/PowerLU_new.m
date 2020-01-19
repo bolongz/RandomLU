@@ -41,7 +41,7 @@ while i * b < maxcol,
     t1 = (i-1) * b;
     t2 = t1 + b;
     %GG = G(:, t1 + 1 : t2); % - L(:, 1:t1) * (U(1:t1, :)* VV(:, t1 + 1 : t2));
-    [L1, U1] = lu(G(:, t1 + 1 : t2));
+    %[L1, U1] = lu(G(:, t1 + 1 : t2));
     %L(:, t1 + 1: t2) = L1; 
     %U(t1+ 1: t2, :) =  U1 * VV(:, t1 + 1 : t2)';
             
@@ -66,6 +66,11 @@ while i * b < maxcol,
     i = i +1;
   
 end
+
+[LL, U, P1] = lu( A * VV(:, 1:k), 'vector');
+[U,L1,P2] = lu(VV(:, 1:k) * U','vector');
+L = LL*L1';
+U = U';
 
 if E > acc
     fprintf('Warning: the accuracy is not attained with the maximum iteration: %d', maxcol);
