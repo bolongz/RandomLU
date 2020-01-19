@@ -43,7 +43,7 @@ while i * b < maxcol,
     %GG = G(:, t1 + 1 : t2); % - L(:, 1:t1) * (U(1:t1, :)* VV(:, t1 + 1 : t2));
     %[L1, U1] = lu(G(:, t1 + 1 : t2));
     %L(:, t1 + 1: t2) = L1; 
-    %U(t1+ 1: t2, :) =  U1 * VV(:, t1 + 1 : t2)';
+   % U(t1+ 1: t2, :) =  U1 * VV(:, t1 + 1 : t2)';
             
     temp = E- norm(G(:, t1 + 1 : t2), 'fro')^2;
     
@@ -67,7 +67,7 @@ while i * b < maxcol,
   
 end
 
-[LL, U, P1] = lu( A * VV(:, 1:k), 'vector');
+[LL, U, P1] = lu( G(:, 1:k), 'vector');
 [U,L1,P2] = lu(VV(:, 1:k) * U','vector');
 L = LL*L1';
 U = U';
