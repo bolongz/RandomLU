@@ -15,17 +15,17 @@ M3= genTestMatrix(n, n, 3);
  [Q, B, k]= AdpRangeFinder(M3, 1.5e-3, 7950); k
 
 % test PowerLU_eb
-tic; [L, U, k]= PowerLU_eb(M1,1e-2, 10, 4); toc
+tic; [L, U, P1, P2, k]= PowerLU_eb(M1,1e-2, 10, 4); toc
 k
-tic; [L, U, k]= PowerLU_eb(M1,1e-4, 10, 4); toc
+tic; [L, U, P1, P2, k]= PowerLU_eb(M1,1e-4, 10, 4); toc
 k
-tic; [L, U, k]= PowerLU_eb(M2,1e-4, 10, 4); toc
+tic; [L, U,  P1, P2,k]= PowerLU_eb(M2,1e-4, 10, 4); toc
 k
-tic; [L, U, k]= PowerLU_eb(M2,1e-5, 10, 4); toc
+tic; [L, U,  P1, P2,k]= PowerLU_eb(M2,1e-5, 10, 4); toc
 k
-tic; [L, U, k]= PowerLU_eb(M3,1e-2, 10, 4); toc
+tic; [L, U,  P1, P2,k]= PowerLU_eb(M3,1e-2, 10, 4); toc
 k
-tic; [L, U, k]= PowerLU_eb(M3,1.5e-3, 40, 4); toc
+tic; [L, U,  P1, P2,k]= PowerLU_eb(M3,1.5e-3, 40, 4); toc
 k
 
 % test randQB_FP

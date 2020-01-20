@@ -5,13 +5,13 @@ readImage;
  
 
 % test PowerLU_eb
-tic; [L1, U1, k]= PowerLU_eb(A,1e-1, 10, 4); toc
+tic; [L1, U1,  P1, P2,k]= PowerLU_eb(A,1e-1, 10, 4); toc
 k
-tic; [L, U, k]= PowerLU_eb(A,1e-1, 20, 4); toc
+tic; [L, U,  P1, P2,k]= PowerLU_eb(A,1e-1, 20, 4); toc
 k
-tic; [L, U, k]= PowerLU_eb(A,1e-1, 10, 6); toc
+tic; [L, U,  P1, P2,k]= PowerLU_eb(A,1e-1, 10, 6); toc
 k
-tic; [L, U, k]= PowerLU_eb(A,1e-1, 20, 6); toc
+tic; [L, U,  P1, P2,k]= PowerLU_eb(A,1e-1, 20, 6); toc
 k
 
 % test randQB_FP
