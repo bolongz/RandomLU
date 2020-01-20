@@ -1,4 +1,4 @@
-function [ L, U] = PowerLU_eb_k(A,l,k,b,q)
+function [ L, U, P1, P2] = PowerLU_eb_k(A,l,k,b,q)
 [m, n]=size(A);
 
 L = zeros(m,k);

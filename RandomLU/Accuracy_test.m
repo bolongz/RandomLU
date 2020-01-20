@@ -30,9 +30,9 @@ rsvd_err = zeros(dim,1);
 rsvd_err1 = zeros(dim,1);
 rsvd_err2 = zeros(dim,1);
 
-powerlu_b_err2 = zeros(dim,1);
-powerlu_b_err4 = zeros(dim,1);
-powerlu_b_err6 = zeros(dim,1);
+%powerlu_b_err2 = zeros(dim,1);
+%powerlu_b_err4 = zeros(dim,1);
+%powerlu_b_err6 = zeros(dim,1);
 
 powerlu_eb_err2 = zeros(dim,1);
 powerlu_eb_err3 = zeros(dim,1);
@@ -83,14 +83,14 @@ for i = 1:20
     randsvd_errs  = randSVD_errors( A,ss,kk,step, 2, mode);
     rsvd_err2 = rsvd_err2 + randsvd_errs;  
     
-     powerlu_errs = PowerLU_b_errors(A,ss,kk,step,2, mode);
-    powerlu_b_err2 = powerlu_b_err2 + powerlu_errs;
+     %powerlu_errs = PowerLU_b_errors(A,ss,kk,step,2, mode);
+    %powerlu_b_err2 = powerlu_b_err2 + powerlu_errs;
     
-    powerlu_errs = PowerLU_b_errors(A,ss,kk,step,4, mode);
-    powerlu_b_err4 = powerlu_b_err4 + powerlu_errs;
+    %powerlu_errs = PowerLU_b_errors(A,ss,kk,step,4, mode);
+    %powerlu_b_err4 = powerlu_b_err4 + powerlu_errs;
     
-    powerlu_errs = PowerLU_b_errors(A,ss,kk,step,6, mode);
-    powerlu_b_err6 = powerlu_b_err6 + powerlu_errs;
+    %powerlu_errs = PowerLU_b_errors(A,ss,kk,step,6, mode);
+    %powerlu_b_err6 = powerlu_b_err6 + powerlu_errs;
 
     
     powerlu_errs = PowerLU_eb_errors(A,ss,kk,step,2, mode);
@@ -115,9 +115,9 @@ powerlu_err2 = [20; powerlu_err2];
 powerlu_err4 = [20; powerlu_err4];
 powerlu_err6 = [20; powerlu_err6];
 
-powerlu_b_err2 = [20; powerlu_b_err2];
-powerlu_b_err4 = [20; powerlu_b_err4];
-powerlu_b_err6 = [20; powerlu_b_err6];
+%powerlu_b_err2 = [20; powerlu_b_err2];
+%powerlu_b_err4 = [20; powerlu_b_err4];
+%powerlu_b_err6 = [20; powerlu_b_err6];
 
 powerlu_eb_err2 = [20; powerlu_eb_err2];
 powerlu_eb_err3 = [20; powerlu_eb_err3];

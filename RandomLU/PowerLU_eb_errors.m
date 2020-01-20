@@ -13,7 +13,10 @@ function errs = PowerLU_eb_errors(A, ss, k, b,p, mode)
     errs = [];
     
     for i = ss:b:k
-        [ L, U] = PowerLU_eb_k(A,i, i,b, p);
+        [ L, U, P1, P2] = PowerLU_eb_k(A,i, i,b, p);
+        
+        L = L( TransposePermutation(P1),:);
+        U = U(:,TransposePermutation(P2)); 
         if strcmp(mode,'spec')
             er = norm(A-L * U) / eigs(1); 
             errs = [errs; er];

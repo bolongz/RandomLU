@@ -13,8 +13,8 @@ randlu_times2 = zeros(dim,1);
 randsvd_times = zeros(dim,1);
 randsvd_times2 = zeros(dim,1);
 
-powerlu_b_times = zeros(dim,1);
-powerlu_b_times2 = zeros(dim,1);
+%powerlu_b_times = zeros(dim,1);
+%powerlu_b_times2 = zeros(dim,1);
 powerlu_eb_times = zeros(dim,1);
 powerlu_eb_times2 = zeros(dim,1);
 powerlu_eb_times15 = zeros(dim,1);
@@ -58,31 +58,31 @@ for i = 1:1:dim
         randQB_FP_times2(i) = randQB_FP_times2(i) + t99;
         
         tic;
-        [~, ~] = PowerLU_eb_k(A, dimm,dimm, 20, 2);
+        [~, ~, ~, ~] = PowerLU_eb_k(A, dimm,dimm, 20, 2);
         t100 = toc;
         powerlu_eb_times(i) = powerlu_eb_times(i) + t100;
         
         tic;
-        [~, ~] = PowerLU_eb_k(A, dimm, dimm, 20, 3);
+        [~, ~, ~, ~] = PowerLU_eb_k(A, dimm, dimm, 20, 3);
         t1013 = toc;
         powerlu_eb_times15(i) = powerlu_eb_times15(i) + t1013;
         
         
         tic;
-        [~, ~] = PowerLU_eb_k(A, dimm, dimm, 20, 4);
+        [~, ~, ~, ~] = PowerLU_eb_k(A, dimm, dimm, 20, 4);
         t101 = toc;
         powerlu_eb_times2(i) = powerlu_eb_times2(i) + t101;
         
         
         if X(i) < LIMIT;
-            tic;
-            [~, ~] = PowerLU_b_k(A, dimm,dimm, 20, 2);
-            t102 = toc;
-            powerlu_b_times(i) = powerlu_b_times(i) + t102;   
-            tic;
-            [~, ~] = PowerLU_b_k(A, dimm, dimm, 20, 4);
-            t103 = toc;
-            powerlu_b_times2(i) = powerlu_b_times2(i) + t103;
+            %tic;
+            %[~, ~] = PowerLU_b_k(A, dimm,dimm, 20, 2);
+            %t102 = toc;
+            %powerlu_b_times(i) = powerlu_b_times(i) + t102;   
+            %tic;
+            %[~, ~] = PowerLU_b_k(A, dimm, dimm, 20, 4);
+            %t103 = toc;
+            %powerlu_b_times2(i) = powerlu_b_times2(i) + t103;
             tic;
             [~, ~, ~, ~] = randomizedLU_gauss(A,dimm, dimm,0);
             t11 = toc;
