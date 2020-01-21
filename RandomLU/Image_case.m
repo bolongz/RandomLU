@@ -5,7 +5,7 @@ readImage;
  
 
 % test PowerLU_eb
-tic; [L1, U1,  P1, P2,k]= PowerLU_eb(A,1e-1, 10, 4); toc
+tic; [L1, U1,  P11, P22,k]= PowerLU_eb(A,1e-1, 10, 4); toc
 k
 tic; [L, U,  P1, P2,k]= PowerLU_eb(A,1e-1, 20, 4); toc
 k
@@ -136,7 +136,8 @@ for i = 1:1:n-1
             flag = false;
         end
         
-    end
+    endL = L( TransposePermutation(P1),:);
+        U = U(:,TransposePermutation(P2)); 
      if flag2
         break;
     end
@@ -148,9 +149,11 @@ readImage;
 [Q, B, k]= AdpRangeFinder(A, 0.1); k
 tic; [Q, B, k]= randQB_EI_auto(A, 0.1, 10, 1); toc
 k
-tic; [Q, B, k]= randQB_EI_auto(A, 0.1, 20, 1); toc
+tic; [Q, B, k]= randQB_EI_auto(A, 0.1L = L( TransposePermutation(P1),:);
+        U = U(:,TransposePermutation(P2)); , 20, 1); toc
 k
-tic; [Q, B, k]= randQB_EI_auto(A, 0.1, 10, 2); toc
+tic; [Q, B, k]= randQB_EI_auto(A, 0.1, 10, 2); tocL = L( TransposePermutation(P1),:);
+        U = U(:,TransposePermutation(P2)); 
 k
 tic; [Q, B, k]= randQB_EI_auto(A, 0.1, 20, 2); toc
 k
@@ -168,7 +171,8 @@ k =
 Elapsed time is 2.769952 seconds.
 
 k =
-
+L = L( TransposePermutation(P1),:);
+        U = U(:,TransposePermutation(P2)); 
    328
 k =
 
@@ -179,7 +183,8 @@ Elapsed time is 2.433959 seconds.
 k =
 
     82
-
+L = L( TransposePermutation(P1),:);
+        U = U(:,TransposePermutation(P2)); 
 tic; [Q, B, k]= randQB_FP_auto(A, 0.1, 10, 2); toc
 k
 tic; [Q, B, k]= randQB_FP_auto(A, 0.1, 20, 2); toc
@@ -200,6 +205,8 @@ k
 
 %}
 
+L1 = L1(TransposePermutation(P11),:);
+U1 = U1(:,TransposePermutation(P22)); 
 BB = L1 * U1;
 CC = reshape(BB', [4752,3168, 3]);
 
