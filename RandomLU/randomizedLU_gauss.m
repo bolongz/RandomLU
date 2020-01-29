@@ -1,4 +1,4 @@
-function [ L, U, P1, P2] = randomizedLU( A,l,k,q,mode, gpu, density)
+function [ L, U, P1, P2] = randomizedLU_gauss( A,l,k,q,mode, gpu, density)
 %RANDOMIZEDLU Performs randomized LU Decomposition up to a given rank
 %   Parameters:
 %   A - matrix to be factorized.
