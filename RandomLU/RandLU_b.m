@@ -12,7 +12,7 @@ while i <= k
         [Li, ~] = lu(A' * Li);
         [Li, ~] = lu(A * Li);
     end
-    if k > 0
+    if i > 0
         [Li, ~] = lu(Li - L * (Lp * Li));
     end
     Lip = Fastpinv(Li, 'gauss');
