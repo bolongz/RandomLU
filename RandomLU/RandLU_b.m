@@ -5,7 +5,7 @@ L = [];
 U = [];
 Lp = [];
 i = 0;
-while i <= k
+while i < k
     Omg = randn(n, b);
     [Li, ~] = lu(A * Omg);
     for j= 1:1:p
@@ -30,5 +30,4 @@ while i <= k
     i = i + b;
     E = norm(A, 'fro')^2;
 end
-k = i;
 end
