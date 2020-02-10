@@ -12,8 +12,6 @@ X = [ss:step:kk];
 mode = 'fro';
 dim = size(X,2);
 
-%powerr = zeros(dim,1);
-
 rlu_err = zeros(dim,1);
 rlu_err1 = zeros(dim,1);
 rlu_err2 = zeros(dim,1);
@@ -59,7 +57,7 @@ for i = 1:20
     randsvd_errs = randSVD_errors( A,ss,kk,step, 1, mode);
     rsvd_err1 = rsvd_err1 + randsvd_errs;
     
-    randsvd_errs  = randSVD_errors( A,ss,kk,step, 2, mode);Acc_randlub1.m
+    randsvd_errs  = randSVD_errors( A,ss,kk,step, 2, mode);
 
     rsvd_err2 = rsvd_err2 + randsvd_errs;  
   
