@@ -2,7 +2,7 @@
 %A = gen_rand_mat_slow_decay(500,400);
 %A = gen_rand_mat_exp_decay(500,400,7);%
 clear;
-[A,~] = genTestMatrix(2000, 2000, 1); %slow decay 
+[A,~] = genTestMatrix(2000, 2000, 3); %slow decay 
 %[A,~] = genTestMatrix(500, 500, 3); %decay rapidly
 %[A,~] = genTestMatrix(2000, 2000, 3); %S-shape
 kk = 200;
@@ -11,8 +11,6 @@ step = 10;
 X = [ss:step:kk];
 mode = 'fro';
 dim = size(X,2);
-
-%powerr = zeros(dim,1);
 
 rlu_err = zeros(dim,1);
 rlu_err1 = zeros(dim,1);
@@ -82,5 +80,5 @@ rsvd_err2 = [20; rsvd_err2];
 svd_errs = [1; svd_errs];
 X = [0, X];
 
-save('acc12020randlub.mat');
+save('acc32020randlub.mat');
 

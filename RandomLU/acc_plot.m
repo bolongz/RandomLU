@@ -38,7 +38,8 @@ L = legend([h1(1), h2(1), h3(1), h4(1), h5(1), h6(1), h7(1), h8(1), h9(1) ...
  'PowerLU, p = 2',...%  'PowerLU\_b, p = 0', 'PowerLU\_b, p = 1', 'PowerLU\_b, p = 2',...
 'PowerLU\_FP, p = 0', 'PowerLU\_FP, p = 1', 'PowerLU\_FP, p = 2');
 L.FontSize = 20;
+set(gca,'FontSize',18)
 %[h1(1), h2(1), h3(1), h4(1), h5(1), h6(1)]
-xlabel('l', 'FontSize',15,'FontWeight','bold');
+xlabel('l', 'FontSize',20,'FontWeight','bold');
 %ylabel('Spectral Norm Error', 'FontSize',15,'FontWeight','bold');
-ylabel('Forbenius Error', 'FontSize',15,'FontWeight','bold');
+ylabel('Relative Forbenius Error', 'FontSize',20,'FontWeight','bold');
