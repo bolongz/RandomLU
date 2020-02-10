@@ -11,18 +11,17 @@ randlu_b_times2 = zeros(dim,1);
 randQB_b_times = zeros(dim, 1);
 randQB_b_times2 = zeros(dim, 1);
 for i = 1:1:dim
-    %A = sprand(X(i), X(i), 0.003);
     A = randn(X(i), X(i));
     for ii = 1:1:20
         dimm = 200;
         
         if X(i) < LIMIT;
             tic;
-            [~, ~, ~, ~] = RandLU_b(A,dimm, 20,0);
+            [~, ~] = RandLU_b(A,dimm, 20,0);
             t1111 = toc;
             randlu_b_times(i) = randlu_b_times(i) + t1111;
             tic;
-            [~, ~, ~, ~] = RandLU_b(A,dimm, 20,1);
+            [~, ~] = RandLU_b(A,dimm, 20,1);
             t3333 = toc;
             randlu_b_times2(i) = randlu_b_times2(i) + t3333;
             tic;
