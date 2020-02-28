@@ -15,6 +15,20 @@ M3= genTestMatrix(n, n, 3);
 % [Q, B, k]= AdpRangeFinder(M3, 1.5e-3, 7950); k
 
 % test PowerLU_eb
+
+tic; [L, U, k]=  RandLU_fp(M1,1e-2, 10, 1); toc
+k
+tic; [L, U, k]=  RandLU_fp(M1,1e-4, 10, 1); toc
+k
+tic; [L, U, k]=  RandLU_fp(M2,1e-4, 10, 1); toc
+k
+tic; [L, U, k]=  RandLU_fp(M2,1e-5, 10, 1); toc
+k
+tic; [L, U, k]=  RandLU_fp(M3,1e-2, 10, 1); toc
+k
+tic; [L, U, k]=  RandLU_fp(M3,1.5e-3, 10, 1); toc
+k
+
 tic; [L, U, k]=  RandLU_fp(M1,1e-2, 20, 1); toc
 k
 tic; [L, U, k]=  RandLU_fp(M1,1e-4, 20, 1); toc
