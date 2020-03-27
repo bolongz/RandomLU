@@ -7,7 +7,7 @@ acc= relerr^2*E;
 
 L = [];
 U = [];
-Lp = [];
+%Lp = [];
 k = 0;
 while 1
     Omg = randn(n, b);

@@ -9,6 +9,7 @@ L = [];
 U = [];
 Lp = [];
 k = 0;
+flag = false;
 while 1
     Omg = randn(n, b);
     [Li, ~] = lu(A * Omg);
@@ -35,17 +36,19 @@ while 1
     k = k + b;
     if norm(A, 'fro')^2 < acc
         %A = temp;
+        k
+        flag= true;
+
         for j=b:-1:1,
-            A = A + Li(j,:) * Ui(:,j);
+            A = A + Li(:,j) * Ui(j,:);
             if norm(A, 'fro')^2 >= acc,
-                flag= true;
                 break;
             end
         end
     else
    
     if flag,
-        k= (i-1)*b+(b-j);
+        k= k + (b-j);
         break;
     end
 end

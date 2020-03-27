@@ -14,8 +14,7 @@ M3= genTestMatrix(n, n, 3);
 [Q, B, k]= AdpRangeFinder(M3, 1e-2); k
 [Q, B, k]= AdpRangeFinder(M3, 1.5e-3, 7950); k
 
-% test PowerLU_eb
-%{
+
 tic; [L, U, k]=  RandLU_fp(M1,1e-2, 10, 1); toc
 k
 tic; [L, U, k]=  RandLU_fp(M1,1e-4, 10, 1); toc
@@ -28,12 +27,9 @@ tic; [L, U, k]=  RandLU_fp(M3,1e-2, 10, 1); toc
 k
 tic; [L, U, k]=  RandLU_fp(M3,1.5e-3, 10, 1); toc
 k
-%}
 
+%{
 tic; [L, U, k]=  RandLU_fp(M1,1e-2, 20, 1); toc
-k
-
-tic; [L, U, k]=  RandLU_fpp(M1,1e-2, 20, 1); toc
 k
 
 tic; [L, U, k]=  RandLU_fp(M1,1e-4, 20, 1); toc
@@ -46,20 +42,21 @@ tic; [L, U, k]=  RandLU_fp(M3,1e-2, 20, 1); toc
 k
 tic; [L, U, k]=  RandLU_fp(M3,1.5e-3, 20, 1); toc
 k
+%}
+% test randQB_b
 
-% test randQB_FP
-%tic; [Q, B, k]= randQB_FP_auto(M1, 1e-2, 10, 1); toc
-%k
-%tic; [Q, B, k]= randQB_FP_auto(M1, 1e-4, 10, 1); toc
-%k
-%tic; [Q, B, k]= randQB_FP_auto(M2, 1e-4, 10, 1); toc
-%k
-%tic; [Q, B, k]= randQB_FP_auto(M2, 1e-5, 10, 1); toc
-%k
-%tic; [Q, B, k]= randQB_FP_auto(M3, 1e-2, 10, 1); toc
-%k
-%tic; [Q, B, k]= randQB_FP_auto(M3, 1.5e-3, 40, 1); toc
-%k
+tic; [Q, B, k]= randQB_b(M1, 1e-2, 10, 1); toc
+k
+tic; [Q, B, k]= randQB_b(M1, 1e-4, 10, 1); toc
+k
+tic; [Q, B, k]= randQB_b(M2, 1e-4, 10, 1); toc
+k
+tic; [Q, B, k]= randQB_b(M2, 1e-5, 10, 1); toc
+k
+tic; [Q, B, k]= randQB_b(M3, 1e-2, 10, 1); toc
+k
+tic; [Q, B, k]= randQB_b(M3, 1.5e-3, 10, 1); toc
+k
 
 %SVD
 k = truncated_svd(M1, 1e-2)
@@ -175,13 +172,13 @@ tic; [Q, B, k]= randQB_EI_auto(A, 0.1, 10, 2); toc
 k
 tic; [Q, B, k]= randQB_EI_auto(A, 0.1, 20, 2); toc
 k
-tic; [Q, B, k]= randQB_FP_auto(A, 0.1powerr2, 10, 1); toc
+tic; [Q, B, k]= randQB_b(A, 0.1powerr2, 10, 1); toc
 k
-tic; [Q, B, k]= randQB_FP_auto(A, 0.1, 20, 1); toc
+tic; [Q, B, k]= randQB_b(A, 0.1, 20, 1); toc
 k
-tic; [Q, B, k]= randQB_FP_auto(A, 0.1, 10, 2); toc
+tic; [Q, B, k]= randQB_b(A, 0.1, 10, 2); toc
 k
-tic; [Q, B, k]= randQB_FP_auto(A, 0.1, 20, 2); toc
+tic; [Q, B, k]= randQB_b(A, 0.1, 20, 2); toc
 k
 
 
@@ -192,9 +189,9 @@ tic; [Q, B, k]= randQB_EI_auto(A, 0.5, 50, 1); toc
 k
 tic; [Q, B, k]= randQB_EI_auto(A, 0.5, 50, 2); toc
 k
-tic; [Q, B, k]= randQB_FP_auto(A, 0.5, 50, 1); toc
+tic; [Q, B, k]= randQB_b(A, 0.5, 50, 1); toc
 k
-tic; [Q, B, k]= randQB_FP_auto(A, 0.5, 50, 2); toc
+tic; [Q, B, k]= randQB_b(A, 0.5, 50, 2); toc
 k
 
 %}
