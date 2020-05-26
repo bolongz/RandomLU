@@ -1,5 +1,5 @@
 clear;
-A = GenerateMatrix(10000, 10000);
+A = GenerateMatrix(10000, 10000, 1000);
 X = [100:100:1000];
 
 dim = size(X,2);
