@@ -1,6 +1,11 @@
-function [A, d] =GenerateMatrix(m, n, s)
+function [A, d] =GenerateMatrix(m, n, s, gpu)
+    
+    if gpu
+        L = gpuArray.randn(m, s);
+    else
+        L = randn(m, s);
+    end
 
-    L = randn(m, s);
     [U, ~] = qr(L, 0);
     L = randn(n, s);
     [V, ~] = qr(L, 0);

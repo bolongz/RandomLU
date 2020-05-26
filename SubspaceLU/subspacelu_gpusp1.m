@@ -1,6 +1,6 @@
 clear;
-A = GenerateMatrix(10000, 10000, 1000);
-X = [100:100:1000];
+[A, ~] = GenerateMatrix(15000, 15000, 1000, 1);
+X = [100:100:500];
 
 dim = size(X,2);
 
@@ -104,4 +104,12 @@ for i = 1:1:dim
         %}
     end
 end
+A = gather(A);
+X = gather(X);
+powerlu_gputimes = gather(powerlu_gputimes);
+randlu_gputimes = gather(randlu_gputimes);
+powerlu_gputimes2 = gather(powerlu_gputimes2);
+randlu_gputimes2 = gather(randlu_gputimes2);
+randsvd_gputimes = gather(randsvd_gputimes);
+randsvd_gputimes2 = gather(randsvd_gputimes2);
 save('subspacelugpusp52020.mat')
