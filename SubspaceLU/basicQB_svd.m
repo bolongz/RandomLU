@@ -1,4 +1,4 @@
-function [U, S, V]=basicQB_svd(A, l, k, P)
+function [U, S, V]=basicQB_svd(A, l, k, P, gpu)
 % [U, S, V]=basicQB_svd(A, k, P)
 % Rank-k truncated SVD of A based on the basic randQB algorithm.
 % Syntax:
@@ -11,11 +11,19 @@ function [U, S, V]=basicQB_svd(A, l, k, P)
 
 if nargin<3,
     P=0;
+    gpu = false;
 end
 
               % over-sampling
 [m,n]= size(A);
-B= randn(n, l);
+
+if gpu
+    B = gpuArray.randn(n,l);
+else
+    B = randn(n,l);
+end
+
+%B= randn(n, l);
 U= A*B;
 [U, ~]= qr(U, 0);
 for j=1:P,

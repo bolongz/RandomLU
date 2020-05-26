@@ -1,8 +1,20 @@
-function [ L, U, P1, P2] = PowerLU(A,l,k,q)
+function [L, U, P1, P2] = PowerLU(A,l,k,q, gpu)
 
 [m, n]=size(A);
 
+if nargin<3,
+    q=0;
+    gpu = false;
+end
+
 if mod(q, 2) == 0
+    
+    if gpu
+        Omega = gpuArray.randn(m,l);
+    else
+        Omega = randn(m,l);
+    end
+
     Omega = randn(m,l);
     if q > 2
         [VV, ~] =  lu(A' * Omega);
@@ -10,7 +22,13 @@ if mod(q, 2) == 0
         [VV, ~] = qr(A' * Omega, 0);
     end
 else
-    VV = randn(n,l);
+    
+    if gpu
+        VV = gpuArray.randn(n,l);
+    else
+        VV = randn(n,l);
+    end
+    
 end
 v = floor((q-1)/2);
 for ii = 1:v

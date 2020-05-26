@@ -1,5 +1,5 @@
 
-function errs = RandLU_errors(A, ss, k, b,p, mode)
+function errs = RandLU_errors(A, ss, k, b,p, mode, gpu)
  
     if strcmp(mode,'spec')
         [~, S, ~] = svds(A, k+1);
@@ -12,7 +12,7 @@ function errs = RandLU_errors(A, ss, k, b,p, mode)
     errs = [];
     
     for i = ss:b:k
-        [L, U, p_left, p_right] = randomizedLU_gauss(A,i,i,p);
+        [L, U, p_left, p_right] = randomizedLU_gauss(A,i,i,p, gpu);
         L = L( TransposePermutation(p_left),:);
         U = U(:,TransposePermutation(p_right));  
         
