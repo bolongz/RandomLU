@@ -14,8 +14,6 @@ if mod(q, 2) == 0
     else
         Omega = randn(m,l);
     end
-
-    Omega = randn(m,l);
     if q > 2
         [VV, ~] =  lu(A' * Omega);
     else
