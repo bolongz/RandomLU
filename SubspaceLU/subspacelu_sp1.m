@@ -1,5 +1,5 @@
 clear;
-A = randn(10000, 10000);
+A = randn(8000, 8000);
 
 
 X = [100:100:1000];
@@ -26,7 +26,7 @@ for i = 1:1:dim
     %A = sprand(X(i), X(i), 0.003);
     dimm = dimm + 100;
     %A = randn(X(i), X(i));
-    for ii = 1:1:10
+    for ii = 1:1:20
         tic        
         [ ~, ~, ~, ~] = PowerLU(A,dimm, dimm,2);
         t1 = toc;

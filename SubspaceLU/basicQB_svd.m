@@ -19,8 +19,12 @@ B= randn(n, l);
 U= A*B;
 [U, ~]= qr(U, 0);
 for j=1:P,
-    [B, ~]= qr(A'*U, 0);   % May reduce an orthogonalization
-    [U, ~]= qr(A*B, 0);
+    [B, ~]= lu(A'*U);   % May reduce an orthogonalization
+    if j == p
+        [U, ~]= qr(A*B, 0);
+    else
+        [U, ~] = lu(A * B);
+    end
 end
 B= A'*U;
 
