@@ -14,5 +14,5 @@ function [A, d] =GenerateMatrix(m, n, s, gpu)
     E = randn(m, n);
     S= spdiags(d', 0, s, s);
     [~, length] = size(d);
-    sigma = d(1, int32(3 * length/4))
+    sigma = d(1, int32(3 * length/4));
     A = U * S * V' + 0.1 * sigma * randn(m, n);
