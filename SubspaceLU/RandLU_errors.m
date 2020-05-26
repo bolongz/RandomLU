@@ -12,7 +12,7 @@ function errs = RandLU_errors(A, ss, k, b,p, mode, gpu)
     errs = [];
     
     for i = ss:b:k
-        [L, U, p_left, p_right] = randomizedLU_gauss(A,i,i,p, gpu);
+        [L, U, p_left, p_right] = randomizedLU_gauss(A,i,i,p,'econ', gpu);
         L = L( TransposePermutation(p_left),:);
         U = U(:,TransposePermutation(p_right));  
         
