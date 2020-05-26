@@ -20,7 +20,7 @@ U= A*B;
 [U, ~]= qr(U, 0);
 for j=1:P,
     [B, ~]= lu(A'*U);   % May reduce an orthogonalization
-    if j == p
+    if j == P
         [U, ~]= qr(A*B, 0);
     else
         [U, ~] = lu(A * B);
