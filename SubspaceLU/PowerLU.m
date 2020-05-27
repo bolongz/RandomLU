@@ -2,8 +2,7 @@ function [L, U, P1, P2] = PowerLU(A,l,k,q, gpu)
 
 [m, n]=size(A);
 
-if nargin<3,
-    q=0;
+if nargin <5,
     gpu = false;
 end
 

@@ -9,8 +9,7 @@ function [U, S, V]=basicQB_svd(A, l, k, P, gpu)
 %  -P is an optional parameter to balance time and accuacy (default value 0).
 %   With large P, the accuracy increases with runtime overhead.
 
-if nargin<3,
-    P=0;
+if nargin<5,
     gpu = false;
 end
 
