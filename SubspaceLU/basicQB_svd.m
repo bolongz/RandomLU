@@ -30,7 +30,7 @@ U= A*B;
 for j=1:P,
     [B, ~]= lu(A'*U);   % May reduce an orthogonalization
     if j == P
-        [U, ~]= eigSVD(A*B);
+        [U, ~, ~]= eigSVD(A*B);
     else
         [U, ~] = lu(A * B);
     end
