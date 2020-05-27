@@ -19,6 +19,7 @@ end
 
 if gpu
     B = gpuArray.randn(n,l);
+    A = gpuArray(A);
 else
     B = randn(n,l);
 end
@@ -46,4 +47,9 @@ else
     V= V(:,1:k);
 end
 
+if gpu
+    U = gather(U);
+    S = gather(S);
+    V = gather(V);
+end
 end 

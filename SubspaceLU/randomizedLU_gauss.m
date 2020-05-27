@@ -40,6 +40,7 @@ end
 l = min([l m n]);
 if gpu
     Omega = gpuArray.randn(m,l);
+    A = gpuArray(A);
     if density<1
         Omega = Omega.*(gpuArray.*rand(m,l)<density)/density;
     end
@@ -91,5 +92,12 @@ P2=Pb;
 if strcmp(mode,'full')
     L = [L zeros(n,n-k)];
     U = [U; zeros(n-k,m)];
+end
+
+if gpu
+    L = gather(L);
+    U = gather(U);
+    P1 = gather(P1);
+    P2 = gather(P2);
 end
 end

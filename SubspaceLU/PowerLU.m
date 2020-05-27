@@ -10,6 +10,7 @@ end
 if mod(q, 2) == 0
     
     if gpu
+        A = gpuArray(A);
         Omega = gpuArray.randn(m,l);
     else
         Omega = randn(m,l);
@@ -42,4 +43,10 @@ end
 [U,L1,P2] = lu(VV(:, 1:k) * U','vector');
 L = LL*L1';
 U = U';
+if gpu
+    L = gather(L);
+    U = gather(U);
+    P1 = gather(P1);
+    P2 = gather(P2);
+end
 end
