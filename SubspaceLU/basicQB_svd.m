@@ -26,11 +26,11 @@ end
 
 %B= randn(n, l);
 U= A*B;
-[U, ~]= qr(U, 0);
+[U, ~,~]= eigSVD(U);
 for j=1:P,
     [B, ~]= lu(A'*U);   % May reduce an orthogonalization
     if j == P
-        [U, ~]= qr(A*B, 0);
+        [U, ~, ~]= eigSVD(A*B);
     else
         [U, ~] = lu(A * B);
     end
@@ -38,10 +38,10 @@ end
 B= A'*U;
 
 if nargout==1,
-    U= svd(B','econ');
+    [U, ~, ~]= eigSVD(B');
     U= U(1:k);
 else
-    [U1, S, V]= svd(B', 'econ');
+    [U1, S, V]= eigSVD(B');
     U= U*U1(:,1:k);
     S= S(1:k,1:k);
     V= V(:,1:k);

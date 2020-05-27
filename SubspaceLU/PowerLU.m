@@ -18,7 +18,7 @@ if mod(q, 2) == 0
     if q > 2
         [VV, ~] =  lu(A' * Omega);
     else
-        [VV, ~, ~] = eigSVD(A' * Omega, 0);
+        [VV, ~, ~] = eigSVD(A' * Omega);
     end
 else
     
@@ -33,7 +33,7 @@ v = floor((q-1)/2);
 for ii = 1:v
     [VV, ~] = lu(A * VV);
     if ii == v
-        [VV, ~, ~] = eigSVD(A' * VV, 0);  
+        [VV, ~, ~] = eigSVD(A' * VV);  
     else
         [VV, ~] = lu(A' * VV);             
     end
