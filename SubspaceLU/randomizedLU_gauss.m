@@ -33,7 +33,7 @@ end
 pinvmode = 'gauss';
 %pinvmode = 'regular';
 if gpu
-    pinvmode = 'gpu';
+    pinvmode = 'sparse';
 end
 
 [n, m]=size(A);
