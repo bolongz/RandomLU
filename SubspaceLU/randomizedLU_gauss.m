@@ -83,7 +83,11 @@ if l>k
     Ly = Ly(:,1:k);
 end
 invL = Fastpinv(Ly,pinvmode);
-B = invL*A(Py,:);
+if gpu
+    B = invL * LeftPermMat(Py) * A;
+else
+    B = invL*A(Py,:);
+end
 [Lb, Ub, Pb] = LU_Col(B','regular');
 L = Ly*Lb;
 U = Ub;
