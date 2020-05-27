@@ -84,7 +84,7 @@ if l>k
 end
 invL = Fastpinv(Ly,pinvmode);
 if gpu
-    B = invL * LeftPermMat(Py) * A;
+    B = invL * (LeftPermMat(Py) * A);
 else
     B = invL*A(Py,:);
 end
