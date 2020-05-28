@@ -14,11 +14,11 @@ for i = 1:1:dim
     %[A, ~] =GenerateMatrix(N,X(i),  X(i));
     for ii = 1:1:20
         tic        
-        [Q,R] = svd(A, 0);;
+        [Q,R] = qr(A, 0);;
         t1 = toc;
         qr_times(i) = qr_times(i) + t1;
         tic;
-        [U, S, V] = eigSVD(A');
+        [U, S, V] = eigSVD(A);
         t22 = toc;
         eigsvd_times(i) = eigsvd_times(i) + t22;
     end
