@@ -1,11 +1,7 @@
-function [A, d] =GenerateMatrixTest(B, m, n, s, gpu)
+function [A, d] =GenerateMatrixTest(m, n, s)
     
-    if gpu
-        L = gpuArray.randn(m, s);
-    else
-        L = randn(m, s);
-    end
-
+ 
+    L = randn(m, s);
     [U, ~] = qr(L, 0);
     L = randn(n, s);
     [V, ~] = qr(L, 0);
@@ -15,4 +11,4 @@ function [A, d] =GenerateMatrixTest(B, m, n, s, gpu)
     S= spdiags(d', 0, s, s);
     [~, length] = size(d);
     sigma = d(1, int32(3 * length/4));
-    A =B *  U * S * V' + 0.1 * sigma * randn(m, n);
+    A =U * S * V' + 0.1 * sigma * randn(m, n);

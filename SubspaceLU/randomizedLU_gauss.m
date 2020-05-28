@@ -85,7 +85,7 @@ end
 invL = Fastpinv(Ly,pinvmode);
 if gpu
     PPy = gpuArray(LeftPermMat(Py));
-    B = invL * (PPy * A);
+    B = invL * (PPy * A); % not working for sparse matrix due to matlab doesn't permit single * sparse
 else
     B = invL*A(Py,:);
 end
