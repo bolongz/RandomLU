@@ -14,8 +14,8 @@ end
 d= sqrt(diag(D)); 
 e= 1./d;
 S= spdiags(e, 0, l, l);   
-U= (S*V')*A';
-U= U';
+U= A * (V * S); %(S*V')*A';
+%U= U';
 S = d;
 end
     

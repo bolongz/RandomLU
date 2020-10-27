@@ -1,7 +1,9 @@
 clear;
-[A, ~] = GenerateMatrix(10000, 10000, 1000, 0);
-X = [100:100:500];
-
+%[A, ~] = GenerateMatrix(10000, 10000, 1000, 0);
+%X = [100:100:500];
+%clear;
+load('gemat12.mat');
+A = Problem.A;
 dim = size(X,2);
 
 powerlu_times = zeros(dim,1);

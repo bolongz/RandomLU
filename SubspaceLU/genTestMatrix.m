@@ -24,4 +24,4 @@ function [A, d] = genTestMatrix(m, n, t)
     end
 
     S= spdiags(d', 0, m, n);
-    A = U * S * V;
+    A = U * S * V';

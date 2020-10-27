@@ -43,13 +43,13 @@ powerlu_eb_err6 = zeros(dim,1);
 svderr = zeros(dim,1);
 for i = 1:20
     
-    powerlu_errs = PowerLU_errors(A,ss,kk,step,2, mode);
+    powerlu_errs = SubspaceLU_errors(A,ss,kk,step,2, mode);
     powerlu_err2 = powerlu_err2 + powerlu_errs;
     
-    powerlu_errs = PowerLU_errors(A,ss,kk,step,4, mode);
+    powerlu_errs = SubspaceLU_errors(A,ss,kk,step,4, mode);
     powerlu_err4 = powerlu_err4 + powerlu_errs;
     
-    powerlu_errs = PowerLU_errors(A,ss,kk,step,6, mode);
+    powerlu_errs = SubspaceLU_errors(A,ss,kk,step,6, mode);
     powerlu_err6 = powerlu_err6 + powerlu_errs;
 
    

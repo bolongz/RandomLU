@@ -33,7 +33,7 @@ end
 pinvmode = 'gauss';
 %pinvmode = 'regular';
 if gpu
-    pinvmode = 'sparse';
+    pinvmode = 'gpu';
 end
 
 [n, m]=size(A);
@@ -63,7 +63,7 @@ end
 %}
 [Ly,~, Py]  = lu(Y, 'vector');  
 if q>0
-    Ly = Ly( TransposePermutation(Py),:);
+    Ly = Ly(TransposePermutation(Py),:);
     for ii = 1:q
         [Ly, ~] = lu(A' * Ly);
         if ii == q
@@ -74,20 +74,15 @@ if q>0
         end
     end
 end
-%else
-%    [Ly,~, P1]  = lu(Y, 'vector');
-%end
-
-% [Ly, ~, Py] = lu(Y,'vector');
 if l>k
     Ly = Ly(:,1:k);
 end
 invL = Fastpinv(Ly,pinvmode);
 if gpu
-    PPy = gpuArray(LeftPermMat(Py));
+    PPy = gpuArray(LeftPermMat(Py)); %GPU sparse matrix cannot support Indexing.
     B = invL * (PPy * A); % not working for sparse matrix due to matlab doesn't permit single * sparse
 else
-    B = invL*A(Py,:);
+    B = invL*A(Py,:); 
 end
 [Lb, Ub, Pb] = LU_Col(B','regular');
 L = Ly*Lb;
@@ -99,10 +94,10 @@ if strcmp(mode,'full')
     U = [U; zeros(n-k,m)];
 end
 
-if gpu
-    L = gather(L);
-    U = gather(U);
-    P1 = gather(P1);
-    P2 = gather(P2);
-end
+%if gpu
+%    L = gather(L);
+%    U = gather(U);
+%    P1 = gather(P1);
+%    P2 = gather(P2);
+%end
 end

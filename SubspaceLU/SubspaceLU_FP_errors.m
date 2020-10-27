@@ -1,5 +1,5 @@
 
-function errs = PowerLU_errors(A, ss, k, b,p, mode)
+function errs = SubspaceLU_FP_errors(A, ss, k, b,p, mode)
  
     if strcmp(mode,'spec')
         mode = 'spec';
@@ -13,9 +13,10 @@ function errs = PowerLU_errors(A, ss, k, b,p, mode)
     errs = [];
     
     for i = ss:b:k
-        [ L, U, p_left, p_right] = PowerLU(A,i, i,p);
-        L = L( TransposePermutation(p_left),:);
-        U = U(:,TransposePermutation(p_right)); 
+        [ L, U, P1, P2] = SubspaceLU_FP_k(A,i, i,b, p);
+        
+        L = L( TransposePermutation(P1),:);
+        U = U(:,TransposePermutation(P2)); 
         if strcmp(mode,'spec')
             er = norm(A-L * U) / eigs(1); 
             errs = [errs; er];

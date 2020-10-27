@@ -1,12 +1,12 @@
 function errs = SVD_errors(A, ss, k, b, mode)
 
     if strcmp(mode,'spec')
-        [U, S, V] = svd(A);
+        [U, S, V] = svd(full(A));
         %[~, S, ~] = svds(A, k + 5);
         eigs = diag(S);    
     else  
         mode = 'fro';
-        [U, S, V] = svd(A);
+        [U, S, V] = svd(full(A));
         err = norm(A, 'fro');
     end
     

@@ -23,32 +23,28 @@ else
     B = randn(n,l);
 end
 
-%B= randn(n, l);
 U= A*B;
-[U, ~,~]= eigSVD(U);
+[U,~] = qr(U,0);
 for j=1:P,
-    [B, ~]= lu(A'*U);   % May reduce an orthogonalization
+    [B, ~]= lu(A'*U); 
     if j == P
-        [U, ~, ~]= eigSVD(A*B);
+        [U, ~]= qr(A*B, 0);
     else
         [U, ~] = lu(A * B);
     end
 end
-B= A'*U;
 
-if nargout==1,
-    U= svd(B','econ');
-    U= U(1:k);
-else
-    [U1, S, V]= svd(B', 'econ');
-    U= U*U1(:,1:k);
-    S= S(1:k,1:k);
-    V= V(:,1:k);
-end
 
-if gpu
-    U = gather(U);
-    S = gather(S);
-    V = gather(V);
-end
+B= A' * U;
+[U1, S, V]= svd(B', 'econ');
+
+ U= U*U1(:,1:k);
+ S= S(1:k,1:k);
+ V= V(:,1:k);
+
+%if gpu
+%    U = gather(U);
+%    S = gather(S);
+%    V = gather(V);
+%end
 end 
