@@ -20,7 +20,7 @@ for i = 1:1:dim
     dimm = dimm + 100;
     for ii = 1:1:20
         tic        
-        [ ~, ~, ~, ~] = SubspaceLU(A,dimm, dimm,2, 1, true);
+        [ ~, ~, ~, ~] = SubspaceLU(A,dimm, dimm,2, true);
         t1 = toc;
         subspacelu_times(i) = subspacelu_times(i) + t1;
         
